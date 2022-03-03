@@ -1,0 +1,527 @@
+1.Write a C++ program to calculate the grades of a list of students with attributes(Name, Roll_no, Marks of 3 subjects) using class with member functions input(), calcGrade(), display().
+
+
+```
+#include <iostream>
+
+using namespace std;
+
+class student
+{
+    char name[20];
+    int rollno;
+    int marks1,marks2,marks3;
+    char grade[1];
+  public:
+    void input();
+    void calcgrade();
+    void display();
+};
+void student::input()
+{
+    cout<<"Enter name of the student : "<<" ";
+    cin>>name;
+    cout<<"Enter rollno of the student : "<<" ";
+    cin>>rollno;
+    cout<<"Enter marks of the student secured for subject 1 : "<<" ";
+    cin>>marks1;
+    cout<<"Enter marks of the student secured for subject 2 : "<<" ";
+    cin>>marks2;
+    cout<<"Enter marks of the student secured for subject 3 : "<<" ";
+    cin>>marks3;
+}
+void student::calcgrade()
+{
+    char grade;
+    int avg;
+    avg=(marks1+marks2+marks3)/3;
+    cout<<"The average marks secured is : "<<avg<<endl;
+    if (avg>=90)
+    {
+        grade='A';
+    }
+    if (avg<90 and avg>=80)
+    {
+        grade='B';
+    }
+    if (avg<80 and avg>=70)
+    {
+        grade='C';
+    }
+    if (avg<70 and avg>=60)
+    {
+        grade='D';
+    }
+    if (avg<60)
+    {
+        grade='F';
+    }
+    cout<<"The grade of the student is : "<< grade;
+    
+}
+void student::display()
+{
+    cout<<"The name of the student is : "<< name<<endl;
+    cout<<"The rollno of the student is: "<< rollno<<endl;
+    cout<<"The marks of the student secured in subject1 is : "<< marks1<<endl;
+    cout<<"The marks of the student secured in subject2 is : "<< marks2<<endl;
+    cout<<"The marks of the student secured in subject3 is : "<< marks3<<endl;
+}
+int main()
+{
+    student a;
+    a.input();
+    a.display();
+    a.calcgrade();
+    
+}
+```
+3.Write a C++ program using classes to perform bank transaction for n customers (cust_name, acc_no, acc_type, balance). The program should be menu drivenand it should have the following menus like adding new account, withdraw (keep a min balance of 500), deposit, balance enquiry and account statement(cust_name, acc_no, acc_type, balance).
+
+
+```
+#include <iostream>
+
+using namespace std;
+class bankaccount
+{
+    char name[20];
+    char type[20];
+    int accno,balance;
+  public:
+    void getdetails()
+    {
+       cout<<"Enter the name of the depositor : "<<" ";
+       cin>>name;
+       cout<<"Enter the account number :  "  << " " ;
+       cin>>accno;
+       cout<<"Enter the type of account : "<<" ";
+       cin>>type;
+       cout<<"Enter the balance amount : "<<"  ";
+       cin>>balance;
+    }
+    void deposit(void)
+    {
+        int amt;
+        cout<<"Enter amount to be deposited : "<<" ";
+        cin>>amt;
+        balance=balance+amt;
+        cout<<"-------------Amount deposited successfully ---------- "<<endl;
+    }
+    void withdraw(void);
+    void display();
+};
+void bankaccount::withdraw()
+{
+    int Amount;
+    cout<<"Enter the amount to be withdrawn : "<<" ";
+    cin>>Amount;
+    void getdetails();
+    if (balance>Amount)
+    {
+        balance=balance-Amount;
+        cout<<"The current bank balance in your account is :"<<balance;
+        cout << "Amount withdrawn successfully";
+    }
+    else
+    {
+        cout<<"Insufficient bank balance ";
+    }
+}
+void bankaccount::display()
+{
+    void getdetails();
+    cout<<"The name of the depositor : "<< name;
+    cout<<"\n";
+    cout<<"The account number is : "<< accno;
+    cout<<"\n";
+    cout<<"The type of the account is : "<< type;
+    cout<<"\n";
+    cout<<"The balance amount is : "<< balance;
+    cout<<"\n";
+}
+int main()
+{
+    bankaccount x;
+    x.getdetails();
+    x.display();
+    x.deposit();
+    x.withdraw();
+    return(0);
+}
+    
+
+```
+4. Write a C++ progtram to perform operations such as compare, concatenate and length on String objects.
+
+
+
+```
+#include <iostream>
+#include <cstring>
+using namespace std;
+class strings
+{
+    char *name;
+    int length;
+  public:
+    strings()
+    {
+        length=0;
+        name=new char[length+1]  ;
+    }
+    strings(const char*s)
+    {
+        length= strlen(s)  ;
+        name=new char[length+1] ;
+        strcpy(name,s);
+    }
+    void display(void)
+    {
+        cout<<name<<endl;
+    }
+    void join(strings a,strings b);
+};
+void strings::join(strings a,strings b)
+{
+    length=a.length+b.length;
+    delete name;
+    name=new char[length+1];
+    strcpy(name,a.name);
+    strcat(name,b.name);
+   
+}
+
+int main()
+{
+    strings name1("Rakesh "),
+            name2("Kumar "),
+            name3("Sinha"),s1,s2; 
+    s1.join(name1,name2);
+    s2.join(s1,name3);
+    name1.display();
+    name2.display();
+    name3.display();
+    s1.display();
+    s2.display();
+    
+
+    return 0;
+}
+```
+6. Create a class TIME with members hours, minutes, seconds. Take input, add two time objects by passing objects to function and display result.
+
+
+```
+#include <iostream>
+using namespace std;
+class TIME
+{
+    int hours;
+    int minutes;
+  public:
+    void gettime(int h,int m)
+    {
+        hours=h;
+        minutes=m;
+    }
+    void puttime(void)
+    {
+        cout<<hours<<"hours and ";
+        cout<<minutes<<" minutes"<<"\n";
+    }
+    void sum(TIME,TIME);  
+};
+void TIME::sum(TIME t1,TIME t2)
+{
+    minutes=t1.minutes+t2.minutes;
+    hours=minutes/60;
+    minutes=minutes%60;
+    hours=hours+t1.hours+t2.hours;
+}
+int main()
+{
+    TIME T1,T2,T3;
+    int h1,h2,m1,m2;
+    cout<<"Enter the time in hrs(for T1) : ";
+    cin>>h1;
+    cout<<"Enter the time in minutes(for T1) : ";
+    cin>>m1;
+    cout<<"Enter the time in hrs(for T2) : ";
+    cin>>h2;
+    cout<<"Enter the time in minutes(for T2) : ";
+    cin>>m2;
+    T1.gettime(h1,m1);
+    T2.gettime(h2,m2);
+    T3.sum(T1,T2);
+    cout<<"T1 = ";
+    T1.puttime();
+    cout<<"T2 = ";
+    T2.puttime();
+    cout<<"T3 = ";
+    T3.puttime();
+    return(0);
+}
+```
+
+9. Write a C++ program to design a class having static member function named showcount() which has the property of displaying the number of objects created of the class.
+
+
+
+```
+#include <iostream>
+using namespace std;
+class test
+{
+    int code;
+    static int count;
+public:
+    void setcode(void)
+    {
+        code=++count;
+    } 
+    void showcode(void)
+    {
+        cout<<"Object Number : "<<code<<endl;
+    }
+    static void showcount(void)
+    {
+        cout<<"Count : "<<count<<endl;
+    }
+};
+int test::count;
+int main()
+{
+    test t1,t2;
+    t1.setcode();
+    t2.setcode();
+    test::showcount();
+    test t3;
+    t3.setcode();
+    test::showcount();
+    t1.showcode();
+    t2.showcode();
+    t3.showcode();
+    return(0);
+}
+
+```
+10.
+
+
+```
+#include<iostream>
+using namespace std;
+class invent2;
+class invent1
+{
+    int code;
+    int items;
+    float price;
+  public:
+    invent1(int a,int b,float c)
+    {
+        code=a;
+        items=b;
+        price=c;
+    } 
+    void putdata()
+    {
+        cout<<" Code : "<<code<<endl;
+        cout<<" Items : "<<items<<endl;
+        cout<<" Value : "<<price<<endl;
+    } 
+    int getcode()
+    {
+        return code;
+    } 
+    int getitems()
+    {
+        return items;
+    } 
+    float getprice()
+    {
+        return price;
+    }
+    operator float()
+    {
+        return(items*price);
+    } 
+    
+};
+class invent2
+{
+    int code;
+    float value;
+   public:
+    invent2()
+    {
+        code=0;
+        value=0;
+    } 
+    invent2(int x,float y)
+    {
+        code=x;
+        value=y;
+    }
+    void putdata()
+    {
+        cout<<" Code : "<<code<<endl;
+        cout<<" Value : "<<value<<endl;
+    }
+    invent2(invent1 p)
+    {
+        code=p.getcode();
+        value=p.getitems()*p.getprice();
+    }
+};
+int main()
+{
+    int c,n,pr;
+    cout<<"Enter the code of the product : "<<" ";
+    cin>>c;
+    cout<<"Enter the number of items : "<<" ";
+    cin>>n;
+    cout<<"Enter the value of the product : "<<" ";
+    cin>>pr;
+    invent1 s1(c,n,pr);
+    invent2 d1;
+    float total_value;
+    total_value=s1;
+    d1=s1;
+    cout<<"Product details - invent1 type"<<endl;
+    s1.putdata();
+    cout<<"\nStock value"<<endl;
+    cout<<"Value = "<<total_value<<"\n\n";
+    cout<<"Product details-invent 2 type"<<"\n";
+    d1.putdata();
+    return(0);
+
+}
+```
+
+
+11. Write a Program to swap private data members of classes named as class_1,class_2 using friend function.
+
+
+```
+#include <iostream>
+using namespace std;
+class class_2;
+class class_1
+{
+    int value1;
+   public:
+    void indata(int a)
+    {
+        value1=a;
+    }
+    void display(void)
+    {
+        cout<<value1<<"\n";
+    }
+    friend void exchange(class_1 &,class_2 &); 
+};
+class class_2
+{
+    int value2;
+   public:
+    void indata(int a)
+    {
+        value2=a;
+    }
+    void display(void)
+    {
+        cout<<value2<<"\n";
+    }
+    friend void exchange(class_1 &,class_2 &); 
+
+};
+void exchange(class_1 & x,class_2 &y)
+{
+    int temp=x.value1;
+    x.value1=y.value2;
+    y.value2=temp;
+}
+int main()
+{
+    class_1 C1;
+    class_2 C2;
+    C1.indata(100);
+    C2.indata(200);
+    cout<<"Values before exchange : "<<"\n";
+    C1.display();
+    C2.display();
+    exchange(C1,C2);
+
+    cout<<"Values after exchange : "<<"\n";
+    C1.display();
+    C2.display();
+    return(0);
+}
+
+```
+
+12. Write a Program to design a class complex to represent complex numbers. The complex class should use an external function (use it as a friend function) to add two complex numbers. The function should return an object of type complex representing the sum of two complex numbers.
+
+
+```
+#include <iostream>
+
+using namespace std;
+class complex
+{
+    float real;
+    float imag;
+  public:
+    void input(float r,float i)
+    {
+        real=r;
+        imag=i;
+    }
+    friend complex sum(complex,complex);
+        void show(void);
+};        
+void complex :: show(void)
+{
+    cout<<real<<"+"<<imag<<"i"<<endl;
+}
+complex sum(complex c1,complex c2)
+{
+    complex c3;
+    c3.real=c1.real+c2.real;
+    c3.imag=c1.imag+c2.imag;
+    return(c3);
+}
+int main()
+{
+    complex A,B,C;
+    int x1,x2,y1,y2;
+    cout<<"The real part of the first complex number : ";
+    cin>>x1;
+    cout<<"The imaginary part of the first complex number : ";
+    cin>>y1;
+    cout<<"The real part of the second complex number : ";
+    cin>>x2;
+    cout<<"The imaginary part of the second complex number : ";
+    cin>>y2;
+    A.input(x1,y1);
+    B.input(x2,y2);
+    C=sum(A,B);
+    cout<<"A = ";
+    A.show();
+    cout<<"B = ";
+    B.show();
+    cout<<"C = ";
+    C.show();
+    return 0;
+}
+```
+
+
+
+
+
+
+
+
