@@ -1,0 +1,74 @@
+#include <iostream>
+
+using namespace std;
+class bankaccount
+{
+    char cust_name[20];
+    char acc_type[20];
+    int acc_no;
+    int balance=500;
+  public:
+    void getdetails()
+    {
+       cout<<"Enter the name of the depositor : "<<" ";
+       cin>>cust_name;
+       cout<<"Enter the account number :  "  << " " ;
+       cin>>acc_no;
+       cout<<"Enter the type of account : "<<" ";
+       cin>>acc_type;
+       cout<<"Enter the balance amount : "<<"  ";
+       cin>>balance;
+    }
+    void deposit(void)
+    {
+        int amt;
+        cout<<"Enter amount to be deposited : "<<" ";
+        cin>>amt;
+        balance=balance+amt;
+        cout<<"-------------------Amount deposited successfully ------------------- "<<endl;
+        cout<<"The total amount in your bank account is : "<<balance;
+        cout<<"\n";
+    }
+    void withdraw(void);
+    void display();
+};
+void bankaccount::withdraw()
+{
+    int Amount;
+    cout<<"Enter the amount to be withdrawn : "<<" ";
+    cin>>Amount;
+    void getdetails();
+    if (balance>Amount)
+    {
+        balance=balance-Amount;
+        cout<<"The current bank balance in your account is : "<<balance;
+        cout<<"\n";
+        cout << "-------------------Amount withdrawn successfully-------------------";
+    }
+    else
+    {
+        cout<<"Insufficient bank balance ";
+    }
+}
+void bankaccount::display()
+{
+    void getdetails();
+    cout<<"The name of the depositor is : "<< cust_name;
+    cout<<"\n";
+    cout<<"The account number is : "<< acc_no;
+    cout<<"\n";
+    cout<<"The type of the account is : "<< acc_type;
+    cout<<"\n";
+    cout<<"The balance amount is : "<< balance;
+    cout<<"\n";
+}
+int main()
+{
+    bankaccount x;
+    x.getdetails();
+    x.display();
+    x.deposit();
+    x.withdraw();
+    return(0);
+}
+    
