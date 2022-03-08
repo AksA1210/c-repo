@@ -1,0 +1,283 @@
+#include<iostream>
+using namespace std;
+class  MATRIX
+{
+    int **p;
+    int d1,d2;
+  public:
+    MATRIX(int x,int y);
+    void get_element(int i,int j,int value)
+    {
+        p[i][j]=value;
+    }
+    int &put_element(int i,int j)
+    {
+        return p[i][j];
+    }
+};
+MATRIX::MATRIX(int x,int y)
+{
+    d1=x;
+    d2=y;
+    p=new int*[d1];
+    for (int i=0;i<d1;i++)
+    {
+        p[i]=new int [d2];
+    }
+}
+int main()
+{
+    int m,n;
+    cout<<"Enter size of matrix : "<<" ";
+    cin>>m>>n;
+    MATRIX A(m,n);
+    cout<<"Enter matrix elements row by row "<<endl;
+    int i,j,value;
+    for(i=0; i<m; i++)
+        for (j=0;j<n;j++)
+        {
+            cin>>value;
+            A.get_element(i,j,value)
+        }
+    cout<<endl;
+    cout<<A.put_element(1,2);
+    return (0);
+}
+
+    
+    
+
+
+// Printing the a matrix
+   cout << "\nEntered Matrix: " << endl;
+   for (int i = 0; i < row; ++i) {
+      for (int j = 0; j < column; ++j) {
+         cout << " " << a[i][j];
+         if (j == column - 1)
+            cout << endl << endl;
+      }
+   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2. area 
+
+#include<iostream>
+#include <cmath>
+using namespace std;
+class Area
+{
+    public:
+    int area(int);
+    int area(int,int);
+    float area(float);
+    float area(float,float); 
+    int area(int,int,int);  
+};
+int area(int s)
+{
+    return(s*s);
+}
+int area(int l,int b)
+{
+    return(l*b);
+}
+float area(float r)
+{
+    return(3.14*r*r);
+}
+float area(float base,float height)
+{
+   return(0.5*base*height);
+}
+int area(int,int,int)
+{
+    int sp,k,ar,d,e,f,g,m,n;
+    sp=(d+e+f)/2;
+    g=sp-d;
+    m=sp-e;
+    n=sp-f;
+    k=sp*g*m*n;
+    ar=sqrt(k);
+    return(ar);
+}
+
+int main()
+{
+    int s,l,b,d,e,f;
+    float r,base,height;
+    cout<<"Enter side of a square:"<<" ";
+    cin>>s;
+    cout<<"Enter length and breadth of rectangle:"<<" ";
+    cin>>l>>b;
+    cout<<"Enter radius of circle:"<<" ";
+    cin>>r;
+    cout<<"Enter base and height of the right angled triangle:"<<" ";
+    cin>>base>>height;
+    cout<<"Enter the first side length of the triangle : "<<" ";
+    cin>>d;
+    cout<<"Enter the second side length of the triangle : "<<" ";
+    cin>>e;
+    cout<<"Enter the second side length of the triangle : "<<" ";
+    cin>>f;
+    cout<<"Area of square is : "<<area(s)<<endl;
+    cout<<"Area of rectangle is : "<<area(l,b)<<" ";
+    cout<<endl;
+    cout<<"Area of circle is : "<<area(r)<<endl;
+    cout<<"Area of right angled triangle is : "<<area(base,height)<<" ";
+    cout<<endl;
+    cout<<"Area of the triangle is : "<<area(d,e,f)<<endl;
+}
+
+
+
+
+
+
+   
+   
+
+
+
+
+
+
+
+
+
+
+
+matrix 
+#include<iostream>
+using namespace std;
+class MATRIX
+{
+    int **z;
+    int m,n,o;
+    o=m*n;
+    int A[o];
+    int p,q,r;
+    r=p*q;
+    int B[r];
+    cout<<"Enter the number of rows of matrix 1 : "<<" ";
+    cin>>m;
+    cout<<"Enter the number of coloumns of matrix 1 : "<<" ";
+    cin>>n;
+    cout<<"Enter the number of rows of matrix 2 : "<<" ";
+    cin>>p;
+    cout<<"Enter the number of coloumns of matrix 2 : "<<" ";
+    cin>>q;
+  public:
+    int matrix_add(int,int);
+    int matrix_mult(int,int);
+    int matrix_transpose(int);
+    int matrix_determinant(int); 
+    int matrix_display(int);
+};
+void get_element(int i,int j,int value)
+{
+        A[i][j]=value;
+} 
+int MATRIX::matrix_add(A,B)
+{
+    for(int i=0; i<m+1 && i<p+1; i++)
+    {
+        for(int j=0; j<n+1 && j<q+1; j++)
+        {
+            C[i][j]=A[i][j]+B[i][j];
+        }
+    }
+    cout<<"Resultant matrix = "<<matrix_display(C);
+}
+int MATRIX::matrix_mult(A,B)
+{
+    for(int i=0; i<m+1 && i<p+1; i++)
+    {
+        for(int j=0; j<n+1 && j<q+1; j++)
+        {
+            C[i][j]=A[i][j]*B[i][j]+A[i][j+1]*B[i+1][j]+A[i][j+2]*B[i+2][j];
+        }
+    }
+    cout<<"Resultant matrix = "<<matrix_display(C);    
+}
+int MATRIX::matrix_transpose(A)
+{
+    for(int i=0; i<m+1; i++)
+    {
+        for(int j=0; j<n+1; j++)
+        {
+           A[i][j]=A[j][i];
+        }
+    }
+    cout<<"Resultant matrix : "<<matrix_display(A);    
+}
+int MATRIX::matrix_display(A)
+{
+    for(int i=0; i<m+1; i++)
+    {
+        for(int j=0; j<n+1; j++)
+        {
+            cout<<A[i][j]<<" ";
+        }
+        cout<<endl;    
+}
+int main()
+{
+    int m,n,o;
+    o=m*n;
+    int A[o];
+    int p,q,r;
+    r=p*q;
+    int B[r];
+    MATRIX A(m,n);
+    MATRIX B(p,q);
+    cout<<"Enter matrix elements row by row "<<endl;
+    int i,j,value;
+    for(i=0; i<m; i++)
+        for (j=0;j<n;j++)
+        {
+            cin>>value;
+            A.get_element(i,j,value)
+        }
+    }    
+    MATRIX D;
+    D.matrix_add(A,B);
+    D.matrix_mult(A,B);
+    D.matrix_transpose(A);
+    D.matrix_determinant(A);
+    D.matrix_display(A);
+    return(0);
+}
+
+
+
+
+
