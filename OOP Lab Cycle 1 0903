@@ -422,6 +422,105 @@ int main()
 }
   
 
+4.
+
+#include <iostream>
+#include <cstring>
+using namespace std;
+class strings
+{
+    char *name;
+    int length;
+  public:
+    strings()
+    {
+        length=0;
+        name=new char[length+1]  ;
+    }
+    strings(const char*s)
+    {
+        length= strlen(s)  ;
+        name=new char[length+1] ;
+        strcpy(name,s);
+    }
+    void display(void)
+    {
+        cout<<name<<endl;
+    }
+    void join(strings x,strings y);
+};
+void strings::compare(strings x,strings y)
+{
+    len1=x.length;
+    len2=y.length;
+    if (len1>len2)
+    {
+        cout<<x<<"has more characters than"<<y;
+    }
+    else
+    {
+        cout<<y<<"has more characters than"<<x;
+    }
+}
+void strings::join(strings x,strings y)
+{
+    length=x.length+y.length;
+    delete name;
+    name=new char[length+1];
+    strcpy(name,x.name);
+    strcat(name,y.name);
+
+}
+
+int main()
+{
+    strings s;
+    int x;
+    do
+    {
+        cout<<"You can do the following : "<<endl;
+        cout<<"Enter appropriate number : "<<endl;
+        cout<<"1 : Input the strings "<<endl;
+        cout<<"2 : Display the strings "<<endl;
+        cout<<"3 : Compare the strings "<<endl;
+        cout<<"4 : Concatenate the strings  "<<endl;
+        cout<<"5 : Length of strings "<<endl;
+        cout<<"6 : Quit "<<endl;
+        cout<<endl;
+        cout<<"\n\nWhat is your option ?"<<" ";
+        cin>>x;
+        switch(x)
+        {
+            case 1: 
+            break;
+            case 2: s.display();
+            break;
+            case 3: s.compare();
+            break;
+            case 4: s.join();
+            break;
+            case 5: s.Length();
+            break;
+            case 6: break;
+            default:cout<<"Error ! Please try again "<<endl;
+        }
+    } while (x!=6);
+    
+    return(0);
+}
+    strings name1("Anna "),
+            name2("Teresa "),
+            name3("Baiju"),s1,s2; 
+    
+    s2.join(s1,name3);
+    name1.display();
+    name2.display();
+    name3.display();
+    
+
+
+    return 0;
+}
 
 
 
