@@ -1,0 +1,324 @@
+4.
+
+
+#include <iostream>
+#include <cstring>
+using namespace std;
+class strings
+{
+    char *name;
+    int length;
+  public:
+    strings()
+    {
+        length=0;
+        name=new char[length+1]  ;
+    }
+    strings(const char*s)
+    {
+        length= strlen(s)  ;
+        name=new char[length+1] ;
+        strcpy(name,s);
+    }
+    void display(void)
+    {
+        cout<<name<<endl;
+    }
+    void join(strings x,strings y);
+};
+void strings::join(strings x,strings y)
+{
+    length=x.length+y.length;
+    delete name;
+    name=new char[length+1];
+    strcpy(name,x.name);
+    strcat(name,y.name);
+
+}
+
+int main()
+{
+    strings name1("Anna "),
+            name2("Teresa "),
+            name3("Baiju"),s1,s2; 
+    s1.join(name1,name2);
+    s2.join(s1,name3);
+    name1.display();
+    name2.display();
+    name3.display();
+    s1.display();
+    s2.display();
+
+
+    return 0;
+}
+
+
+6.
+#include <iostream>
+using namespace std;
+class TIME
+{
+    int hours;
+    int minutes;
+  public:
+    void gettime(int h,int m)
+    {
+        hours=h;
+        minutes=m;
+    }
+    void puttime(void)
+    {
+        cout<<hours<<"hours and ";
+        cout<<minutes<<" minutes"<<"\n";
+    }
+    void sum(TIME,TIME);  
+};
+void TIME::sum(TIME t1,TIME t2)
+{
+    minutes=t1.minutes+t2.minutes;
+    hours=minutes/60;
+    minutes=minutes%60;
+    hours=hours+t1.hours+t2.hours;
+}
+int main()
+{
+    TIME T1,T2,T3;
+    int h1,h2,m1,m2;
+    cout<<"Enter the time in hrs(for T1) : ";
+    cin>>h1;
+    cout<<"Enter the time in minutes(for T1) : ";
+    cin>>m1;
+    cout<<"Enter the time in hrs(for T2) : ";
+    cin>>h2;
+    cout<<"Enter the time in minutes(for T2) : ";
+    cin>>m2;
+    T1.gettime(h1,m1);
+    T2.gettime(h2,m2);
+    T3.sum(T1,T2);
+    cout<<"T1 = ";
+    T1.puttime();
+    cout<<"T2 = ";
+    T2.puttime();
+    cout<<"T3 = ";
+    T3.puttime();
+    return(0);
+}
+
+
+8.
+
+#include <iostream>
+
+using namespace std;
+class complex
+{
+    float x,y;
+  public:
+    complex(){}
+    complex(float a)
+    {
+        x=y=a;
+    }
+    complex(float real,float imag)
+    {
+        x=real;
+        y=imag;
+    }
+    friend complex sum(complex,complex);
+    friend void show(complex);
+};
+complex sum(complex c1,complex c2)
+{
+    complex c3;
+    c3.x=c1.x+c2.x;
+    c3.y=c1.y+c2.y;
+    return(c3);
+}
+void show(complex c)
+{
+    cout<<c.x<<"+"<<c.y<<"i " <<"\n";
+}
+int main()
+{
+    int a,b,p,q;
+    cout<<"Enter the real part of the first complex number : "<<" ";
+    cin>>a;
+    cout<<"Enter the imaginary part of the first complex number : "<<" ";
+    cin>>b;
+    cout<<"Enter the real part of the second complex number : "<<" ";
+    cin>>p;
+    cout<<"Enter the imaginary part of the first complex number : "<<" ";
+    cin>>q;
+    complex A,B,C;
+    A=complex(a,b);
+    B=complex(p,q);
+    C=sum(A,B);
+    cout<<"\n";
+    cout<<"A = "<<" ";
+    show(A);
+    cout<<"B = "<<" ";
+    show(B);
+    cout<<"C = "<<" ";
+    show(C);
+    return(0);
+    
+}
+
+
+9.
+
+#include <iostream>
+using namespace std;
+class test
+{
+    int code;
+    static int count;
+public:
+    void setcode(void)
+    {
+        code=++count;
+    } 
+    void showcode(void)
+    {
+        cout<<"Object Number : "<<code<<endl;
+    }
+    static void showcount(void)
+    {
+        cout<<"Count : "<<count<<endl;
+    }
+};
+int test::count;
+int main()
+{
+    test t1,t2;
+    t1.setcode();
+    t2.setcode();
+    test::showcount();
+    test t3;
+    t3.setcode();
+    test::showcount();
+    t1.showcode();
+    t2.showcode();
+    t3.showcode();
+    return(0);
+}
+
+11.
+
+#include <iostream>
+using namespace std;
+class class_2;
+class class_1
+{
+    int value1;
+   public:
+    void indata(int a)
+    {
+        value1=a;
+    }
+    void display(void)
+    {
+        cout<<value1<<"\n";
+    }
+    friend void exchange(class_1 &,class_2 &); 
+};
+class class_2
+{
+    int value2;
+   public:
+    void indata(int a)
+    {
+        value2=a;
+    }
+    void display(void)
+    {
+        cout<<value2<<"\n";
+    }
+    friend void exchange(class_1 &,class_2 &); 
+
+};
+void exchange(class_1 & x,class_2 &y)
+{
+    int temp=x.value1;
+    x.value1=y.value2;
+    y.value2=temp;
+}
+int main()
+{
+    class_1 C1;
+    class_2 C2;
+    C1.indata(100);
+    C2.indata(200);
+    cout<<"Values before exchange : "<<"\n";
+    C1.display();
+    C2.display();
+    exchange(C1,C2);
+
+    cout<<"Values after exchange : "<<"\n";
+    C1.display();
+    C2.display();
+    return(0);
+}
+
+12.
+
+#include <iostream>
+
+using namespace std;
+class complex
+{
+    float real;
+    float imag;
+  public:
+    void input(float r,float i)
+    {
+        real=r;
+        imag=i;
+    }
+    friend complex sum(complex,complex);
+        void show(void);
+};        
+void complex :: show(void)
+{
+    cout<<real<<"+"<<imag<<"i"<<endl;
+}
+complex sum(complex c1,complex c2)
+{
+    complex c3;
+    c3.real=c1.real+c2.real;
+    c3.imag=c1.imag+c2.imag;
+    return(c3);
+}
+int main()
+{
+    complex A,B,C;
+    int a,b,p,q;
+    cout<<"Enter the real part of the first complex number : "<<" ";
+    cin>>a;
+    cout<<"Enter the imaginary part of the first complex number : "<<" ";
+    cin>>b;
+    cout<<"Enter the real part of the second complex number : "<<" ";
+    cin>>p;
+    cout<<"Enter the imaginary part of the first complex number : "<<" ";
+    cin>>q;
+    A.input(a,b);
+    B.input(p,q);
+    C=sum(A,B);
+    cout<<"A = ";
+    A.show();
+    cout<<"B = ";
+    B.show();
+    cout<<"C = ";
+    C.show();
+    return 0;
+}
+
+
+
+
+
+
+
+
+
