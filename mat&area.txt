@@ -129,6 +129,10 @@ int area(int,int,int)
     ar=sqrt(k);
     return(ar);
 }
+int area(int,int)
+{
+   area=b*h;
+   
 
 int main()
 {
