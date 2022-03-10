@@ -396,7 +396,7 @@ int main()
             case 5: break;
             default:cout<<"Error ! Please try again "<<endl;
         }
-    } while (x!=4);
+    } while (x!=5);
     return(0);
 }
   
