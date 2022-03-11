@@ -1,0 +1,243 @@
+
+
+#include<iostream>
+using namespace std;
+class MATRIX
+{
+    int **z;
+    int m,n;
+  public:
+    MATRIX()
+    {
+        MATRIX(int a,int b);
+        void get_element(int i,int j,int value)
+        {
+            z[i][j]=value;
+        }
+        void matrix_display(int i,int j)
+        {
+            
+        }
+        void matrix_add(matrix&,matrix&);
+        void matrix_mult(matrix&,matrix&);
+        void matrix_transpose(matrix);
+        void matrix_determinant(matrix); 
+        ~MATRIX()    
+        {
+            for(int i=0;i<row;i++)
+            {
+                delete C[i];
+            }
+            delete C;
+        }
+};
+MATRIX::MATRIX(int horiz,int ver)
+{
+    a=horiz;
+    b=ver;
+    C=new int *[a];
+    for(int i=0;i<a;i++)
+    {
+        C[i]=new int[b];
+    }
+}
+
+int MATRIX::matrix_add(MATRIX&A,MATRIX&B)
+{
+    for(int i=0; i<m; i++)
+    {
+        for(int j=0; j<n; j++)
+        {
+            C[i][j]=A.C[i][j]+B.C[i][j];
+        }
+    }
+    cout<<"Resultant matrix = "<<endl;
+    for(int i=0; i<m; i++)
+    {
+        for(int j=0; j<n; j++)
+        {
+            cout<<A[i][j]<<" ";
+        }
+        cout<<endl;    
+    } 
+}
+int MATRIX::matrix_mult(MATRIX&A,MATRIX&B)
+{
+    if (A.b!=B.a)
+    {
+        cout<<"Matrix multipilication is not possible "<<endl;
+    }
+    else
+    {
+        a=A.a;
+        b=B.b;
+        for(int i=0; i<a; i++)
+        {
+            for(int j=0; j<b; j++)
+            {
+                C[i][j]=0;
+                for(k=0;k<b;k++)
+                {
+                    C[i][j]+=A.C[i][k]*B.C[K][j];
+                
+                }
+            }
+            cout<<endl;
+            cout<<"Resultant matrix = "<<endl;
+            for(int i=0; i<m; i++)
+            {
+                for(int j=0; j<n; j++)
+                {
+                    cout<<C[i][j]<<" ";
+                }
+                cout<<endl;    
+           } 
+        }
+    }
+    for(int i=0; i<m && i<p+1; i++)
+    {
+        for(int j=0; j<n+1 && j<q+1; j++)
+        {
+            C[i][j]=A[i][j]*B[i][j]+A[i][j+1]*B[i+1][j]+A[i][j+2]*B[i+2][j];
+        }
+    }
+    cout<<"Resultant matrix = "<<matrix_display(C);    
+}
+int MATRIX::matrix_transpose(A)
+{
+    int transpose;
+    cout<<"Transpose matrix : "<<endl;
+    for(int i=0; i<m+1; i++)
+    {
+        for(int j=0; j<n+1; j++)
+        {
+           A[i][j]=A[j][i];
+        }
+    }
+       
+}
+
+int main()
+{
+    int x;
+    int m,n;
+    int p,q;
+    int i,j,value;
+    MATRIX A(m,n);
+    MATRIX B(p,q);
+    cout<<"Enter matrix elements row by row "<<endl;
+    int i,j,value;
+    for(i=0; i<m; i++)
+        for (j=0;j<n;j++)
+        {
+            cin>>value;
+            A.get_element(i,j,value)
+        }
+    }    
+    MATRIX D;
+    D.matrix_add(A,B);
+    D.matrix_mult(A,B);
+    D.matrix_transpose(A);
+    D.matrix_determinant(A);
+    D.matrix_display(A);
+    return(0);
+}
+
+    do{
+        cout<<"Operations on matrices"<<endl;
+        cout<<"1. Addition"<<endl;
+        cout<<"2. Multipication"<<endl;
+        cout<<"3. Transpose"<<endl;
+        cout<<"4. Trace"<<endl;
+        cout<<"5. Exit"<<endl;
+        cout<<"Enter choice : "<<" ";
+        cin>>x;
+        switch(x)
+        {
+            case 1:
+               cout<<"Enter the order of the first matrix (m x n) : ";
+               cin>>m1>>n1;
+               MATRIX A(m,n);
+               cout<<"Enter elements of the first matrix row by row : "<<endl;
+               int i,j,value;
+               for(i=0; i<m; i++)
+               {
+                   for (j=0;j<n;j++)
+                   {     
+                       cin>>"Enter["<<i+1<<"]"<<j+1<<"]element:";                      
+                       A.get_matrix(i,j,value)
+                   }
+               }
+               A.display(i,j);
+               cout<<"Enter the order of the second matrix ( p x q) : ";
+               cin>>p>>q;
+               MATRIX B(p,q);
+               cout<<"Enter elements of the second matrix row by row : "<<endl;
+               int i,j,value;
+               for(i=0; i<p; i++)
+               {
+                   for (j=0;j<q;j++)
+                   {     
+                       cin>>"Enter["<<i+1<<"]"<<j+1<<"]element:";                      
+                       B.get_matrix(i,j,value)
+                   }
+               }
+               B.display(i,j);
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               display(Y,m1,n1,"Matrix Y");
+               display(Z,m1,n1,"Matrix Z");
+               Delete(X,m1);
+               Delete(Y,m1);
+               Delete(Z,m1);
+               break;
+            case 2: 
+               cout<<"Enter the order of matrix ( M x N) : ";
+               cin>>m1>>n1;
+               X=read(m1,n1,"Matrix X");
+               cout<<"Enter the order of matrix ( M x N) : ";
+               cin>>m2>>n2;
+               Y=read(m2,n2,"Matrix Y");
+               if(n1==m2)
+               {
+                   Z=multiply(X,Y,m1,n1,n2);
+                   display(X,m1,n1,"Matrix X");
+                   display(Y,m1,n1,"Matrix Y");
+                   display(Z,m1,n1,"Matrix Z=X*Y");
+                   Delete(X,m1);
+                   Delete(Y,m2);
+                   Delete(Z,m1);
+                   break;
+                   
+               }
+               else
+               {
+                   cout<<endl;
+                   cout<<"Not possible to multiply these matrices : ";
+                   Delete(X,m1);
+                   Delete(Z,m2);
+               }
+            case 3: 
+               cout<<"Enter the order of matrix ( M x N) : ";
+               cin>>m1>>n1;
+               X=read(m1,n1,"Matrix X");
+               Y=transpose(X,m1,n1);
+               display(X,m1,n1,"Matrix X");
+               display(Y,m1,n1,"Matrix Y");
+               Delete(X,m1);
+               Delete(Y,m2);
+               break;
+            case 4: 
+            break;
+    } while (x!=4);
+    
+    return(0);
+}
+
