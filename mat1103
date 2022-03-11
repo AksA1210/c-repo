@@ -1,22 +1,29 @@
 
-
 #include<iostream>
 using namespace std;
 class MATRIX
 {
-    int **z;
-    int m,n;
+    int **C;
+    int a,b;
   public:
     MATRIX()
     {
         MATRIX(int a,int b);
-        void get_element(int i,int j,int value)
+        void get_matrix(int i,int j,int value)
         {
-            z[i][j]=value;
+            C[i][j]=value;
         }
         void matrix_display(int i,int j)
         {
-            
+            cout<<"Matrix is displayed below : "<<endl;
+            for(int i=0; i<m; i++)
+            {
+                for(int j=0; j<n; j++)
+                {
+                    cout<<C[i][j]<<" ";
+                }
+                cout<<endl;    
+            } 
         }
         void matrix_add(matrix&,matrix&);
         void matrix_mult(matrix&,matrix&);
@@ -69,7 +76,7 @@ int MATRIX::matrix_mult(MATRIX&A,MATRIX&B)
     }
     else
     {
-        a=A.a;
+        a=A.a;          //row=a   col=b
         b=B.b;
         for(int i=0; i<a; i++)
         {
@@ -94,27 +101,40 @@ int MATRIX::matrix_mult(MATRIX&A,MATRIX&B)
            } 
         }
     }
-    for(int i=0; i<m && i<p+1; i++)
-    {
-        for(int j=0; j<n+1 && j<q+1; j++)
-        {
-            C[i][j]=A[i][j]*B[i][j]+A[i][j+1]*B[i+1][j]+A[i][j+2]*B[i+2][j];
-        }
-    }
-    cout<<"Resultant matrix = "<<matrix_display(C);    
 }
 int MATRIX::matrix_transpose(A)
 {
     int transpose;
     cout<<"Transpose matrix : "<<endl;
-    for(int i=0; i<m+1; i++)
+    a=A.b;
+    b=B.a;
+    for(int i=0; i<a; i++)
     {
-        for(int j=0; j<n+1; j++)
+        for(int j=0; j<b; j++)
         {
-           A[i][j]=A[j][i];
+            transpose=A.C[j][i];
+            cout<<transpose<<" ";
+        }
+        cout<<endl;
+    }
+}
+void MATRIX::matrix_trace(MATRIX A)
+{
+    int trace=0;
+    a=A.a;
+    for(int i=0; i<a; i++)
+    {
+        for(int j=0; j<b; j++)
+        {
+            if(i==j)
+            {
+                trace=trace+A.C[i][j];
+                cout<<endl;
+            }
         }
     }
-       
+    cout<<"Trace of matrix : "<<" ";    
+    cout<<trace;
 }
 
 int main()
@@ -123,6 +143,7 @@ int main()
     int m,n;
     int p,q;
     int i,j,value;
+    MATRIX D;
     MATRIX A(m,n);
     MATRIX B(p,q);
     cout<<"Enter matrix elements row by row "<<endl;
@@ -134,13 +155,6 @@ int main()
             A.get_element(i,j,value)
         }
     }    
-    MATRIX D;
-    D.matrix_add(A,B);
-    D.matrix_mult(A,B);
-    D.matrix_transpose(A);
-    D.matrix_determinant(A);
-    D.matrix_display(A);
-    return(0);
 }
 
     do{
@@ -178,66 +192,26 @@ int main()
                {
                    for (j=0;j<q;j++)
                    {     
-                       cin>>"Enter["<<i+1<<"]"<<j+1<<"]element:";                      
-                       B.get_matrix(i,j,value)
+                       cin>>"Enter["<<i+1<<"]"<<j+1<<"]element:";    
+                       cin>>value;
+                       B.get_matrix(i,j,value);
                    }
                }
                B.display(i,j);
-               
-               
-               
-               
-               
-               
-               
-               
-               
-               display(Y,m1,n1,"Matrix Y");
-               display(Z,m1,n1,"Matrix Z");
-               Delete(X,m1);
-               Delete(Y,m1);
-               Delete(Z,m1);
                break;
             case 2: 
-               cout<<"Enter the order of matrix ( M x N) : ";
-               cin>>m1>>n1;
-               X=read(m1,n1,"Matrix X");
-               cout<<"Enter the order of matrix ( M x N) : ";
-               cin>>m2>>n2;
-               Y=read(m2,n2,"Matrix Y");
-               if(n1==m2)
-               {
-                   Z=multiply(X,Y,m1,n1,n2);
-                   display(X,m1,n1,"Matrix X");
-                   display(Y,m1,n1,"Matrix Y");
-                   display(Z,m1,n1,"Matrix Z=X*Y");
-                   Delete(X,m1);
-                   Delete(Y,m2);
-                   Delete(Z,m1);
-                   break;
-                   
-               }
-               else
-               {
-                   cout<<endl;
-                   cout<<"Not possible to multiply these matrices : ";
-                   Delete(X,m1);
-                   Delete(Z,m2);
-               }
+            D.matrix_add(A,B);
+            D.matrix_mult(A,B);   
+            break;   
             case 3: 
-               cout<<"Enter the order of matrix ( M x N) : ";
-               cin>>m1>>n1;
-               X=read(m1,n1,"Matrix X");
-               Y=transpose(X,m1,n1);
-               display(X,m1,n1,"Matrix X");
-               display(Y,m1,n1,"Matrix Y");
-               Delete(X,m1);
-               Delete(Y,m2);
-               break;
-            case 4: 
+            D.matrix_transpose(A);   
             break;
+            case 4: 
+            D.matrix_trace(A);
+            D.matrix_display(A);
+            break;
+            
     } while (x!=4);
     
     return(0);
-}
-
+}       
