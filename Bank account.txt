@@ -18,6 +18,7 @@ class bankaccount
        cin>>acc_type;
        cout<<"Enter the balance amount : "<<"  ";
        cin>>balance;
+     \  cout<<"-------------------Bank account has been created successfully-------------------
     }
     void deposit(void)
     {
@@ -48,7 +49,8 @@ void bankaccount::withdraw()
     else
     {
         cout<<"Insufficient bank balance ";
-    }
+      \  cout<<"You have only"<<balance<<"rupees in your account"   ; 
+    }    
 }
 void bankaccount::display()
 {

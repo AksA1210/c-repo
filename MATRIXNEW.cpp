@@ -169,7 +169,7 @@ int main()
             for (j=0;j<q;j++)
             {     
                 cin>>value;
-                //cin>>"Enter["<<i+1<<"]"<<j+1<<"]element:";    
+                //cin>>"Enter"<<i+1<<<<j+1<<element:";    
                 B.matrix_get(i,j,value);
             }
         }
