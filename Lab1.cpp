@@ -59,7 +59,7 @@ void student::calcgrade()
         grade='F';
     }
     cout<<"The grade of the student is : "<< grade<<endl;
-    
+    cout<<endl;
 }
 void student::display()
 {
@@ -68,6 +68,7 @@ void student::display()
     cout<<"The marks of the student secured in subject1 is : "<< marks1<<endl;
     cout<<"The marks of the student secured in subject2 is : "<< marks2<<endl;
     cout<<"The marks of the student secured in subject3 is : "<< marks3<<endl;
+    cout<<endl;
 }
 int main()
 {
