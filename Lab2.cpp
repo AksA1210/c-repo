@@ -99,6 +99,16 @@ int main()
             case 7: break;
             default:cout<<"Error ! Please try again "<<endl;
         }
+        char a;
+        if (x!=7)
+        {
+           cout<<"Do you want to continue(y/n)?"<<" ";
+           cin>>a;
+           if (a=='n')
+           {
+               x=7;
+           }
+        }
     } while (x!=7);
     
     return(0);
