@@ -18,7 +18,7 @@ void student::put_number()
 {
     cout<<"Roll no : "<<roll_no<<endl;
 }
-class test
+class test : public student
 {
     protected:
       float sub1;
