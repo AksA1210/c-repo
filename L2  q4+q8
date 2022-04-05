@@ -1,0 +1,336 @@
+#include<iostream>                        //lc 2 q4
+using namespace std;
+class  MATRIX
+{
+    int **p;
+    int x,y;
+  public:
+    MATRIX(int x,int y);
+    //~MATRIX();
+    
+    
+//input
+    void input()
+    {
+       cout<<"Enter matrix elements row by row "<<endl;
+    int i,j,value;
+    for(i=0; i<x; i++)
+    {
+        for (j=0;j<y;j++)
+        {
+            cin>>value;
+            get_element(i,j,value);
+        }
+    }    
+    }
+//input
+    
+    
+    void get_element(int i,int j,int value)
+    {
+        p[i][j]=value;
+    }
+    int &put_element(int i,int j)
+    {
+        return p[i][j];
+    }
+    void output()
+    {
+       for(int i=0;i<x;i++)
+    {
+        for(int j=0;j<y;j++)
+        {
+            cout<<put_element(i,j)<<" ";
+        }
+        cout<<endl;
+    }  
+    }
+    MATRIX operator+(MATRIX);
+    MATRIX operator*(MATRIX);
+};
+MATRIX::MATRIX(int a,int b)
+{
+    x=a;
+    y=b;
+    p=new int*[x];
+    for (int i=0;i<x;i++)
+    {
+        p[i]=new int [y];
+    }
+}
+MATRIX MATRIX::operator+(MATRIX B)
+{
+   MATRIX r(x,y);
+   if((x!=B.x)||(y!=B.y))
+   {
+      cout<<"\nMatrix Addition is not possible as the orders of both the matrices are not the same\n\n";
+      r.x=0;
+      r.y=0;
+   }
+   else
+   {
+      r.x=x;
+      r.y=y;
+   }
+   for(int i=0;i<x;i++)
+   {
+      for(int j=0;j<y;j++)
+      {
+        int value=put_element(i,j)+B.put_element(i,j);
+        r.get_element(i,j,value);
+      } 
+   }  
+   cout<<"Sum of the two matrices : "<<endl;
+   for(int i=0;i<x;i++)
+   {
+       for(int j=0;j<y;j++)
+       {
+          cout<<r.put_element(i,j)<<" ";
+       }
+       cout<<endl;
+   }  
+   return r;
+};
+
+MATRIX MATRIX::operator*(MATRIX B)
+{
+
+    int value=0;
+
+    MATRIX r(x,y);
+    if((x!=B.y)||(y!=B.x))
+    {
+      cout<<"Matrix Multiplication is not possible"<<endl;
+      r.x=0;
+      r.y=0;
+    }
+    else
+    {
+      r.x=x;
+      r.y=B.y;
+    }
+    for(int i=0;i<x;i++)
+    {
+        for(int j=0;j<B.y;j++)
+        {
+            for(int k=0;(k<y)||(k<B.x);k++)
+            {
+            value=value+(put_element(i,k)*B.put_element(k,j));
+            }
+        r.get_element(i,j,value);
+        }
+    }   
+    cout<<"Product of the two matrices : "<<endl;
+    for(int i=0;i<x;i++)
+    {
+        for(int j=0;j<y;j++)
+        {
+            cout<<r.put_element(i,j)<<" ";
+        }
+        cout<<endl;
+    }  
+   return r;     
+}
+int main()
+{
+    int x;
+        cout<<"\n Matrix 1"<<endl;
+        int m,n;
+        cout<<"Enter size of matrix : "<<" ";
+        cin>>m>>n;
+        MATRIX A(m,n);
+        A.input();
+
+        cout<<"\n Matrix 2"<<endl;
+        cout<<"Enter size of matrix : "<<" ";
+        cin>>m>>n;
+        MATRIX B(m,n);
+        B.input();
+
+    do
+    {        
+        cout<<"You can do the following : "<<endl;
+        cout<<"Enter appropriate number : "<<endl;
+        //cout<<"1 : Input the details of the matrix "<<endl;
+        cout<<"1 : Display the matrix "<<endl;
+        cout<<"2 : Addition "<<endl;
+        cout<<"3 : Multiplication  "<<endl;
+        cout<<"4 : QUIT  "<<endl;
+        cout<<endl;
+        cout<<"Enter your choice : "<<" ";
+        cin>>x;
+        switch(x)
+        {   //case 1:
+            //A.input();
+            //B.input();
+            case 1:
+            cout<<"\n"; 
+            cout<<"\nFirst matrix : "<<endl;
+            A.output();
+            cout<<"\nSecond matrix : "<<endl;
+            B.output();
+            cout<<"\n"; 
+            break;
+            case 2:
+            cout<<"\n"; 
+            A+B;
+            cout<<"\n"; 
+            break;
+            case 3: 
+            cout<<"\n"; 
+            A*B;
+            cout<<"\n"; 
+            break;
+            case 4: break;
+            default:cout<<"\nError ! Please try again\n"<<endl;
+        }
+    } while (x!=4);
+   return (0);
+}   
+    
+#include<iostream>                  //lc2 q8
+using namespace std;
+
+//abstract
+class Shape
+{
+    public:
+    float area;
+    virtual void get_area(void)=0;
+
+};
+class Rectangle:public Shape
+{
+    int length,breadth;
+    int area;
+    public:
+    void get_dim(int l,int b)
+    {
+        length=l;
+        breadth=b;
+    }
+    void get_area(void)
+    {
+        area=length*breadth;
+        cout<<"The area of the rectangle is : "<<area<<endl;
+    }
+};
+class Circle:public Shape
+{
+    int radius;
+    public:
+    void get_dim(int r)
+    {
+        radius=r;
+    }
+    void get_area(void)
+    {
+        area=3.14*radius*radius;
+        cout<<"The area of the circle is : "<<area<<endl;
+    }
+};
+class Square:public Shape
+{
+    int sidelength;
+    public:
+    void get_dim(int s)
+    {
+        sidelength=s;
+    }
+    void get_area(void)
+    {
+        area=sidelength*sidelength;
+        cout<<"The area of the square is : "<<area<<endl;
+    }
+};
+class Ellipse:public Shape
+{
+    int minor_r;
+    int major_r;
+    public:
+    void get_dim(int a,int b)
+    {
+        major_r=a;
+        minor_r=b;
+    }
+    void get_area(void)
+    {
+        area=3.14*major_r*minor_r;
+        cout<<"The area of the square is : "<<area<<endl;
+    }
+};
+int main()
+{
+    int s,l,a,b;
+    int x;
+    float r,base,height,bs;
+
+    Shape *shape;
+    do
+    {
+    cout<<"You can do the following : "<<endl;
+    cout<<"Enter appropriate number : "<<endl;
+    cout<<"1 : AREA OF A RECTANGLE "<<endl;
+    cout<<"2 : AREA OF A CIRCLE "<<endl;
+    cout<<"3 : AREA OF A SQUARE "<<endl;
+    cout<<"4 : AREA OF A ELLIPSE "<<endl;
+    cout<<"5 : QUIT "<<endl;
+    cout<<endl;
+    cout<<"Enter choice : "<<" ";
+    cin>>x;
+    if (x==1)
+    {
+        int l,b;
+        cout<<"Enter the length of the rectangle : "<<" ";
+        cin>>l;
+        cout<<"Enter the breadth of the rectangle : "<<" ";
+        cin>>b;
+        Rectangle rect;
+        rect.get_dim(l,b);
+        shape=&rect;
+        shape->get_area();
+    }
+    else if (x==2)
+    {
+        int r;
+        cout<<"Enter the radius of the circle : "<<" ";
+        cin>>r;
+        Circle cir;
+        cir.get_dim(r);
+        shape=&cir;
+        shape->get_area();
+    }
+    else if (x==3)
+    {
+        cout<<"Enter the sidelength of the square : "<<" ";
+        cin>>s;
+        Square sq;
+        sq.get_dim(s);
+        shape=&sq;
+        shape->get_area();
+    }
+    else if (x==4)
+    {
+        cout<<"Enter the major radius of the ellipse : "<<" ";
+        cin>>a;
+        cout<<"Enter the minor radius of the ellipse : "<<" ";
+        cin>>b;
+        Ellipse ell;
+        ell.get_dim(a,b);
+        shape=&ell;
+        shape->get_area();
+    }
+    else if(x==5)
+    {
+        break;
+    }
+    
+    else
+    {
+        cout<<"Invalid option "<<endl;
+    }
+    }while (x!=5);
+    return(0);
+}  
+         
+         
