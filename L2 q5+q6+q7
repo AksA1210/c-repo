@@ -46,7 +46,7 @@ class sports
       void put_score(void);
       
 }; 
-class result:public student,public test,public sports
+class result:public test,public sports
 {
     float total;
     public:
