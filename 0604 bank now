@@ -1,0 +1,251 @@
+
+
+
+#include<iostream>                               //l1 q3
+using namespace std;
+class bankaccount
+{
+    string cust_name[20];
+    string acc_type[20];
+    int acc_no[20];
+    int balance[20];
+    int n;
+  public:
+    void bank_accounts(void)
+    {
+        n=0;
+    }
+    void getdetails()
+    {
+       cout<<"Enter the name of the depositor : "<<" ";
+       cin>>cust_name[n];
+       cout<<"Enter the account number :  "  << " " ;
+       cin>>acc_no[n];
+       cout<<"Enter the type of account : "<<" ";
+       cin>>acc_type[n];
+       cout<<"Enter the balance amount : "<<"  ";
+       cin>>balance[n];
+    }    
+     void deposit(void)
+    {
+        int c=21;
+        int a;
+        cout<<"\n Enter the account number : ";
+        cin>>a;
+        for(int i=0;i<n;i++)
+        {
+            if (acc_no[i]==a)
+            {
+                c=i;
+                break;
+            }
+        }
+        if (c!=21)
+        {
+            float amt;
+            cout<<"\n\n Enter amount to be deposited : "<<" ";
+            cin>>amt;
+            balance[c]=balance[c]+amt;
+            cout<<"-------------------Amount deposited successfully ------------------- "<<endl;
+            cout<<"The total amount in your bank account is : "<<balance[c];
+            cout<<endl;
+        }
+        else
+        {
+            cout<<"Account number doesn't match "<<endl;
+           
+        }
+        
+       
+    }
+    void withdraw(void);
+    void display();
+    void display_balance(void);
+    void acc_statement(void);
+    
+    
+};
+void bankaccount::withdraw(void)
+{
+    int c=21;
+    int a;
+    cout<<"\n Enter the account number : ";
+    cin>>a;
+    for(int i=0;i<n;i++)
+    {
+        if (acc_no[i]==a)
+        {
+            c=i;
+            break;
+        }
+    }
+    if (c==21)
+    {
+        cout<<"Account number doesn't match "<<endl;
+    }
+    
+    else
+    {
+        
+        float amt;
+        cout<<"\n\n Enter amount to be withdrawn : "<<" ";
+        cin>>amt;
+        if (balance[c]>(amt+500))
+        {
+            balance[c]=balance[c]-amt;
+            cout << "-------------------Amount withdrawn successfully-------------------"<<endl;
+            cout<<"The total amount in your bank account is : "<<balance[c];
+            cout<<endl;
+        }
+        else
+        {   
+            cout<<"Insufficient bank balance "<<endl;
+        }
+    }    
+}
+
+void bankaccount::display()
+{
+    void getdetails();
+    int c;
+    int a;
+    cout<<"\n\n Enter the account number : "<<endl;
+    cin>>a;
+    for(int i=0;i<n;i++)
+    {
+        if(acc_no[i]==a)
+        {
+            c=i;
+            break;
+        }
+    }
+    if(c!=21)
+    {
+        for(int i=0;i<n;i++)
+        {
+            if(acc_no[i]==a)
+            {
+                cout<<"The name of the depositor is : "<< cust_name[n];
+                cout<<"\n";
+                cout<<"The account number is : "<< acc_no[n];
+                cout<<"\n";
+                cout<<"The type of the account is : "<< acc_type[n];
+                cout<<"\n";
+                cout<<"The balance amount is : "<< balance[n];
+                cout<<"\n";
+                break;
+            }
+        }
+        
+    }
+    
+}
+void bankaccount::display_balance(void)
+{
+    int c;
+    int a;
+    cout<<"\n\n Enter the account number : "<<endl;
+    cin>>a;
+    for(int i=0;i<n;i++)
+    {
+        if(acc_no[i]==a)
+        {
+            c=i;
+            break;
+        }
+    }
+    cout<<endl;
+    cout<<"Balance : "<<balance[c];
+}
+void bankaccount::acc_statement(void)
+{
+    int c = 21;
+    int a;
+    cout<<"Enter the account number : "<<endl;
+    cin>>a;
+    for(int i=0;i<n;i++)
+    {
+        if(acc_no[i]==a)
+        {
+            c=i;
+            break;
+        }
+    }
+    if(c!=21)
+    {
+        for(int i=0;i<n;i++)
+        {
+            if(acc_no[i]==a)
+            {
+                display();
+                break;
+            }
+        }
+        
+    }
+        
+
+}
+int main()
+{
+    int num;
+    cout<<"Enter the number of customers :  "<<endl;
+    cin>>num;
+    bankaccount account;
+    account.bank_accounts();
+    int x;
+    do
+    {
+        cout<<"You can do the following : "<<endl;
+        cout<<"Enter appropriate number : "<<endl;
+        cout<<"1 : Input the details of the customer "<<endl;
+        cout<<"2 : Display the details of the bankaccount "<<endl;
+        cout<<"3 : Deposit money in the bank account  "<<endl;
+        cout<<"4 : Withdraw money from the bank account "<<endl;
+        cout<<"5 : Quit "<<endl;
+        cout<<endl;
+        cout<<"\n\nWhat is your option ?"<<" ";
+        cin>>x;
+        switch(x)
+        {
+            case 1: 
+            for(int i=0;i<num;i++)
+            {
+                account.getdetails();
+            }
+            
+            break;
+            case 2:
+            for(int i=0;i<num;i++)
+            {
+                account.display();
+            } 
+            break;
+            case 3:
+            for(int i=0;i<num;i++)
+            {
+                account.deposit();
+            } 
+            break;
+            case 4:
+            for(int i=0;i<num;i++)
+            {
+                account.withdraw();
+            }
+            case 5: break;
+            default:cout<<"Error ! Please try again "<<endl;
+        }
+        char a;
+        if (x!=5)
+        {
+        cout<<"Do you want to continue(y/n)?"<<" ";
+        cin>>a;
+        if (a=='n')
+        {
+            x=5;
+        }
+        }
+    } while (x!=5);
+    
+    return(0);
+}
