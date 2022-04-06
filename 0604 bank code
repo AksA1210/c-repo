@@ -101,7 +101,7 @@ int main()
             {
                 switch(x)
                 {
-                    case 2:customer[acc_no].getdetails();
+                    case 2:customer[acc_no].display();
                     break;
                     case 3:
                     customer[acc_no].deposit();
