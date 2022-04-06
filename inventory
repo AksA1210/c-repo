@@ -1,0 +1,307 @@
+
+
+#include<iostream>                        //l1 q10
+using namespace std;
+//class invent2
+class invent1
+{
+    int code;
+    int price;
+    float price;
+    public:
+      invent1(int a,int b,float c)
+      {
+         code=a;
+         items=b;
+         price=c;
+      }
+      void putdata()
+      {
+          cout<<"Code : "<<code<<endl;
+          cout<<"Items : "<<items<<endl;
+          cout<<"Price : "<<price<<endl;
+
+      }
+      int getcode()
+      {
+          return code;
+      }
+      int getitems()
+      {
+          return items;
+      }
+      float getprice()
+      {
+          return price;
+      }
+      operator float()
+      {
+          return (items*price);
+      }
+      //operator invent2();
+
+};
+class invent2
+{
+    int code;
+    float value;
+    public:
+      invent2()
+      {
+          code=0;
+          value=0;
+      }
+      invent2(int x,float y)
+      {
+          code=x;
+          value=y;
+      }
+      void putdata()
+      {
+          cout<<"Code : "<<code<<endl;
+          cout<<"Value : "<<value<<endl;
+      }
+      invent2(invent1 p)
+      {
+          code=p.getcode();
+          value=p.getitems()*p.getprice();
+      }
+};
+int main()
+{
+    int prdt_code,prdt_qty,prdt_value;
+    cout<<"Enter the code of the item : "<<endl;
+    cin>>prdt_code;
+    cout<<"Enter the quantity of the item : "<<endl;
+    cin>>prdt_qty;
+    cout<<"Enter the value of the item : "<<endl;
+    cin>>prdt_value;
+    invent1 s1(prdt_code,prdt_qty,prdt_value);
+    invent2 d1;
+    float total_value;
+    total_value=s1;
+    d1=s1;
+    cout<<"Product details - invent1 type "<<endl;
+    s1.putdata();
+    cout<<"\nStock value"<<endl;
+    cout<<"Value = "<<total_value<<endl<<endl;
+    cout<<"Product details - invent2 type"<<endl;
+    d1.putdata();
+    return 0;
+    
+}
+/*Write a C++ program using classes to perform bank transaction for n customers
+(cust_name, acc_no, acc_type, balance). The program should be menu driven
+and it should have the following menus like adding new account, withdraw
+(keep a min balance of 500), deposit, balance enquiry and account statement
+(cust_name, acc_no, acc_type, balance).*/
+
+#include<iostream>
+using namespace std;
+
+class BankAccount{
+    string name[50];
+    int acc[50];
+    string type[50];
+    float balance[50];
+    int num;
+    public:
+
+void accounts(void){num=0;}
+
+void deposit(void){
+    int reqcode=51;
+    int a;cout<<"\n Enter the account number : ";cin>>a;
+    for(int i=0;i<num;i++){
+        if(acc[i]==a){reqcode=i;break;}
+    }
+    if(reqcode!=51){
+    	float x;cout<<"\n\n Enter the depositing amount : ";cin>>x;
+    	balance[reqcode]=balance[reqcode]+x;
+	cout<<"\n Your balance :"<<balance[reqcode]<<"\n";
+    }
+    else cout<<" This account doesn't exit";
+}
+
+void withdraw(void){
+    int reqcode=51;
+    int a;cout<<"\n Enter the account number : ";cin>>a;
+    for(int i=0;i<num;i++){
+        if(acc[i]==a){reqcode=i;break;}
+    }
+    if(reqcode!=51){
+	float x;cout<<"\n\n Enter the withdrawing amount : ";cin>>x;
+    	if(balance[reqcode]>=x+500){
+        	balance[reqcode]=balance[reqcode]-x;
+		cout<<"\n Your balance :"<<balance[reqcode]<<"\n";
+    	}
+    	else{cout<<"\n Your balance :"<<balance[reqcode]<<\
+"\n You can't withdraw that amount\n\n";}
+    }
+    else cout<<" This account doesn't exit";
+}
+
+void display(int number){
+    cout<<"\n\n Name  |  Account no.  |  Account type  |  Balance amount\n";
+    cout<<name[number]<<"             "<<acc[number]<<"             "\
+<<type[number]<<\
+    "     "<<balance[number]<<"               ";
+}
+
+void input(){
+
+    string a;int b;string c;float d;
+
+    cout<<" Name    Account type\n";
+    cin>>a>>c;name[num]=a;type[num]=c;
+    cout<<"\n\n";
+    cout<<" Enter your account number : ";
+    cin>>b;acc[num]=b;
+    cout<<"\n\n";
+    cout<<" Enter your balance amount : ";
+    cin>>d;balance[num]=d+500.00;
+    cout<<"\n\n";
+    num++;
+}
+
+void display_balance(void){
+    int reqcode;
+    int a;cout<<"\n\n Enter the account number : ";cin>>a;
+    for(int i=0;i<num;i++){
+        if(acc[i]==a){reqcode=i;break;}
+    }
+    cout<<"\n  Balance : "<<balance[reqcode];
+}
+
+void account_statement(void){
+    int reqcode=51;
+    int a;cout<<"\n Enter the account number : ";cin>>a;
+    for(int i=0;i<num;i++){
+        if(acc[i]==a){reqcode=i;break;}
+    }
+    if(reqcode!=51){
+    	for(int i=0;i<num;i++){
+        	if(acc[i]==a){display(i);break;}
+    	}
+    }
+}
+
+};
+
+int main(void){
+
+    BankAccount account;
+    account.accounts();
+    string user;
+    while(user!="exit"){
+        cout<<"\n\na) Adding new account";
+        cout<<"\nb) Withdraw";
+        cout<<"\nc) Deposit";
+        cout<<"\nd) Balance enquiry";
+        cout<<"\ne) Account statement";
+        cout<<"\n Enter 'exit' to stop the program \n\n";
+
+        cout<<"\n\nenter your choice : ";cin>>user;
+        if(user=="a"){account.input();}
+        else if(user=="b"){account.withdraw();}
+        else if(user=="c"){account.deposit();}
+        else if(user=="d"){account.display_balance();}
+        else if(user=="e"){account.account_statement();}
+        else if(user!="exit"){cout<<" You have entered a wrong opt \n\n";}
+    }
+return 0;
+}
+
+
+/*Write a C++ program using class to process shopping list for a Departmental
+Store. The list include details such as the Code-no and price of each item and
+perform the operations like adding & deleting items to the list and printing the
+total value of an order.*/
+#include<iostream>
+using namespace std;
+
+class Shopping{
+    int code[50];
+    double price[50];
+    int num,cost;
+    public:
+    void number(void){num=0;}
+    void item(void){cost=0;}
+    void input(){
+        cout<<"\n\n Enter the 3-digit code : ";cin>>code[num];
+        cout<<" Enter the price : ";cin>>price[num];
+        num++;
+    }
+    void output(void){
+	cout<<"\n  Code    :   Price \n\n";
+        for(int i=0;i<num;i++){
+            cout<<code[i]<<"       :   "<<price[i]<<"\n";
+        }
+    }
+    void deletes(void){
+	int reqcode=0;
+    int a;cout<<"\n\n Enter the code to delete : ";cin>>a;
+	
+        for(int i=0;i<num;i++){
+            if(code[i]==a){
+                reqcode=i;
+                for(int i=reqcode;i<num;i++){
+	                price[i]=price[i+1];code[i]=code[i+1];
+                    num--;
+                    cout<<" You have removed the item from stock\n\n";
+                }
+                break;
+            }
+	    }
+        if(reqcode==0)cout<<" This item does not exit\n";
+    }
+    void summing(int customer){
+        for(int i=0;i<num;i++){
+            if(code[i]==customer){cost+=price[i];}
+        }
+    }
+    void bill(void){cout<<"\n\n The total price : "<<cost<<"\n\n";}
+};
+
+// Main Program
+
+int main(void){
+int exit;
+do{    
+    Shopping order;
+    order.number();
+    order.item();
+    
+    string user;
+    while(user!="exit"){
+        cout<<"\n a) Adding an item to shop";
+        cout<<"\n b) Delete an item from shop";
+        cout<<"\n c) Stock available";
+		cout<<"\n d) Buy an item from the stock";
+        cout<<"\n Enter 'exit' to stop the program \n\n";
+
+        cout<<"\n\n Enter your choice : ";cin>>user;
+        if(user=="a"){
+            int items;cout<<"\n Enter the number of items to stock : ";
+			cin>>items;
+            for(int i=0;i<items;i++){order.input();}
+        }
+        else if(user=="b"){order.deletes();}
+        else if(user=="c"){order.output();}
+        else if(user=="d"){
+            int items;cout<<"\n Enter the number of items to buy : ";
+			cin>>items;
+            int list[items];
+            for(int i=0;i<items;i++){
+                cout<<"\n Enter the 3-digit code of item "<<i+1<<" : ";
+				cin>>list[i];
+                order.summing(list[i]);
+            }
+            order.bill();
+        }
+        else if(user!="exit"){cout<<" You have entered a wrong opt \n\n";}
+    }
+cout<<"\n Enter '0' to exit the program : ";cin>>exit;
+}while(exit!=0);
+return 0;
+}
