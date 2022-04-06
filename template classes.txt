@@ -38,6 +38,7 @@ class calculator
     }
 
 };
+char p;
 int main()
 {
     int x,y;
@@ -59,5 +60,8 @@ int main()
     calc1.display_result();
     cout<<endl;
     calc2.display_result();
+    cout<<"\n Do you want to continue(y/n)?"<<endl;cin>>p;
+    while (p!='n');
+  
     return(0);
 }
