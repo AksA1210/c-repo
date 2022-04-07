@@ -1,0 +1,125 @@
+
+
+
+#include<iostream>
+#include<cstring>
+using namespace std;
+class media
+{
+    protected:
+    char title[50];
+    float price;
+    public:
+    media(char *s,float a)
+    {
+        strcpy(title,s);
+        price=a;
+    }
+    virtual void display()=0;
+};
+class book:public media
+{
+    int pages;
+    public:
+    book(char *s,float a,int p):media(s,a)
+    {
+        pages=p;
+    }
+    void display();
+};
+class tape:public media
+{
+    float Time;
+    public:
+    tape(char *s,float a,float t):media(s,a)
+    {
+        Time=t;
+    }
+    void display();
+
+};
+void book::display()
+{
+    cout<<"Title : "<<title<<endl;
+    cout<<"Pages : "<<pages<<endl;
+    cout<<"Price : "<<price<<endl;
+
+}
+
+
+void tape::display()
+{
+    cout<<"Title : "<<title<<endl;
+    cout<<"Play time : "<<Time<<endl;
+    cout<<"Price : "<<price<<endl;
+
+}
+int main()
+{
+    char *title=new char[30];
+    float price,Time;
+    int pages;
+    int ch;
+    do
+    {
+        cout<<"Choose any option from the following : "<<endl;
+        cout<<"1 : Input the details "<<endl;
+        cout<<"2 : Display the details "<<endl;
+        cout<<"3 : Exit "<<endl;
+        cout<<"Enter your choice : " <<" ";
+        cin>>ch;
+        switch(ch)
+        {
+            case 1:
+            {
+            cout<<"ENTER BOOK DETAILS"<<endl;
+            cout<<"Title : ";
+            cin>>title;
+            cout<<"Price : ";
+            cin>>price;
+            cout<<"Pages : ";
+            cin>>pages;
+            book book1(title,price,pages);
+            cout<<"ENTER TAPE DETAILS"<<endl;
+            cout<<"Title : ";
+            cin>>title;
+            cout<<"Price : ";
+            cin>>price;
+            cout<<"Play time(in minutes) : ";
+            cin>>Time;
+            tape tape1(title,price,Time);
+            }
+            case 2:
+            {
+            book book1(title,price,pages);
+            tape tape1(title,price,Time);
+            media* list[2];
+            list[0]=&book1;
+            list[1]=&tape1;
+            cout<<"\n MEDIA DETAILS";
+            cout<<"\n-----------BOOK----------"<<endl;
+            list[0]->display();
+            cout<<"\n-----------TAPE----------"<<endl;
+            list[1]->display();
+            }
+            case 3:
+            break;
+            default:cout<<"Error ! Please try again "<<endl;
+        }
+        char a;
+        if (ch!=3)
+        {
+            cout<<"Do you want to continue(y/n)?"<<" ";
+            cin>>a;
+            if (a=='n')
+            {
+                ch=3;
+            }
+        }
+    } while (ch!=3);
+    
+    
+    
+    return 0;
+
+}
