@@ -142,8 +142,10 @@ int main()
         {
         cout<<"-------Vector 1-------"<<endl;
         v1.get_vector();
+        v1.display_vector();
         cout<<"-------Vector 2-------"<<endl;
         v2.get_vector();
+        v2.display_vector();
         count=0;
         }
         cout<<"You can do the following : "<<endl;
