@@ -37,7 +37,7 @@ void bankaccount::withdraw()
     cout<<"Enter the amount to be withdrawn : "<<" ";
     cin>>Amount;
     void getdetails();
-    if (balance>(Amount+500))
+    if (balance>=(Amount+500))
     {
         balance=balance-Amount;
         cout<<"The current bank balance in your account is : "<<balance;
