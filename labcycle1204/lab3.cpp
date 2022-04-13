@@ -75,7 +75,7 @@ int main()
         cout<<"1 : INPUT THE DETAILS OF THE CUSTOMER "<<endl;
         cout<<"2 : DISPLAY THE DETAILS OF THE BANK ACCOUNT"<<endl;
         cout<<"3 : DEPOSIT MONEY IN THE BANK ACCOUNT  "<<endl;
-        cout<<"4 : WITHDRAW MONEY FRO THE BANK ACCOUNT "<<endl;
+        cout<<"4 : WITHDRAW MONEY FROM THE BANK ACCOUNT "<<endl;
         cout<<"5 : QUIT "<<endl;
         cout<<endl;
         cout<<"\n\nWhat is your option ?"<<" ";
