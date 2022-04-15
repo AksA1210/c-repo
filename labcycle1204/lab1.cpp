@@ -49,7 +49,7 @@ void student::calcgrade()
     {
         grade='D';
     }
-    if (avg<60)
+    if (avg<60 and avg>=50)
     {
         grade='E';
     }
