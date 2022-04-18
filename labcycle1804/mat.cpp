@@ -1,4 +1,4 @@
-#include<iostream>                        //lc 2 q4
+#include<iostream>                        //lc 2 q4 //mult doesnt work
 using namespace std;
 class  MATRIX
 {
