@@ -53,10 +53,14 @@ void strings::compare(strings x,strings y)
     {
         cout<<x.name<<" has more characters than "<<y.name<<endl;
     }
-    else
+    else if (len1<len2)
     {
         cout<<y.name<<" has more characters than "<<x.name<<endl;
     }
+    else
+    {
+        cout<<"Both strings are equal"<<endl;
+    }   
 }
 
 int main()
