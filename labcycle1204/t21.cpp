@@ -66,7 +66,7 @@ int main()
             case 2 :
             {
                 shapeptr = new Sphere;
-                cout << "Enter radius of the circle: "<<endl;
+                cout << "Enter radius of the sphere: "<<endl;
                 shapeptr ->get_dimension();
                 shapeptr ->calculate_volume();
                 break;
