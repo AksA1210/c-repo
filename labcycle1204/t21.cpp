@@ -1,4 +1,4 @@
-#include <iostream>                         //q21 cont
+#include <iostream>                        
 using namespace std;
 
 class Shape 
@@ -15,28 +15,28 @@ class Shape
     virtual void calculate_area() = 0;
 };
 
-class Square : public Shape 
+class Cube : public Shape 
 {
    protected:
-    float areaSquare;
+    float cube_volume;
 
    public:
-    void calculate_area() 
+    void calculate_volume() 
     {
-        areaSquare=dimension * dimension;
-        cout<<"Area of square = " << areaSquare <<endl;
+        cube_volume=dimension*dimension*dimension;
+        cout<<"Volume of cube = " << cube_volume <<endl;
     }
 };
 
-class Circle : public Shape 
+class Sphere : public Shape 
 {
    protected:
-    float areaCircle;
+    float sphere_volume;
    public:
-    void calculate_area() 
+    void calculate_volume() 
     {
-        areaCircle = 3.14 * dimension * dimension;
-        cout<<"Area of circle = " << areaCircle <<endl;
+        sphere_volume =(4/3)* 3.14 * dimension * dimension * dimension;
+        cout<<"Volume of sphere = " << sphere_volume <<endl;
     }
 };
 char p;
@@ -48,8 +48,8 @@ int main()
     do
     {
         cout<<"Choose any option from the following : "<<endl;
-        cout<<"1 : AREA OF A CIRCLE "<<endl;
-        cout<<"2 : AREA OF A SQUARE "<<endl;
+        cout<<"1 : VOLUME OF A CUBE  "<<endl;
+        cout<<"2 : VOLUME OF A SPHERE"<<endl;
         cout<<"3 : EXIT "<<endl;
         cout<<"Enter your choice : "<<endl;
         cin>>x;  
@@ -57,18 +57,18 @@ int main()
         {
             case 1 :
             {
-                shapeptr = new Circle;
-                cout << "Enter radius of the circle: "<<endl;
+                shapeptr = new Cube;
+                cout << "Enter the edge length of the cube: "<<endl;
                 shapeptr ->get_dimension();
-                shapeptr ->calculate_area();
+                shapeptr ->calculate_volume();
                 break;
             }
             case 2 :
             {
-                shapeptr = new Square;
-                cout << "Enter the length of the square: "<<endl;
+                shapeptr = new Sphere;
+                cout << "Enter radius of the circle: "<<endl;
                 shapeptr ->get_dimension();
-                shapeptr ->calculate_area();
+                shapeptr ->calculate_volume();
                 break;
             }
             case 3 :
