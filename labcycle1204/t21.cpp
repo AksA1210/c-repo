@@ -12,7 +12,7 @@ class Shape
         cin >> dimension;
     }
 
-    virtual void calculate_area() = 0;
+    virtual void calculate_volume() = 0;
 };
 
 class Cube : public Shape 
@@ -51,8 +51,9 @@ int main()
         cout<<"1 : VOLUME OF A CUBE  "<<endl;
         cout<<"2 : VOLUME OF A SPHERE"<<endl;
         cout<<"3 : EXIT "<<endl;
-        cout<<"Enter your choice : "<<endl;
+        cout<<"Enter your choice : "<<" ";
         cin>>x;  
+        cout<<endl;
         switch(x)
         {
             case 1 :
