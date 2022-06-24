@@ -1,0 +1,221 @@
+
+#include <iostream>
+using namespace std;
+
+class items
+{
+    string name;
+	int code;
+	float price;
+	int quantity;
+	float total;
+	public:
+	  items()
+	  {
+	      code=0;
+	      price=0;
+	      quantity=0;
+	      total=0;
+	  }
+	  void add()
+	  {
+	      cout<<"Item name : ";
+		  cin>>name;
+		  cout<<"Item code : ";
+		  cin>>code;
+		  cout<<"Item quantity : ";
+		  cin>>quantity;
+		  cout<<"Item price : ";
+		  cin>>price;
+	  } 
+	  void display_details()
+	  {
+	      cout<<code<<"\t\t"<<name<<"\t\t"<<price<<"\t\t"<<quantity<<endl;
+	  }
+	  void alterQuantity(int decrement)
+	  {
+	      quantity = quantity - decrement;
+	  }
+	  int check_code()
+	  {
+	      return code;
+	  }
+	  int check_quantity()
+	  {
+		return quantity;
+	  }
+	  void update_quantity(int new_quantity)
+	  {
+	      quantity = quantity + new_quantity;
+	  }
+	  float generateSum()
+	  {
+	      return quantity*price;
+	  }
+ 	  void new_quantity(int new_quantity)
+ 	  {
+ 	      quantity = new_quantity;
+	  }
+};
+
+int main()
+{
+	items *stock = new items[20];
+	items *shoppingList = new items[20];
+	int stockCount = 0;
+	int shoppingCount = 0;
+	int ch,choice;
+	int keyPosition;
+	bool found = false;
+	do 
+	{
+	    cout<<"--------DEPARTMENTAL STORE--------"<<endl;
+	    cout<<"Choose any option from the following : "<<endl;
+		cout<<"1.Add item to the stock"<<endl;
+		cout<<"2.Delete item from the stock"<<endl;
+		cout<<"3.Update item in the stock"<<endl;
+		cout<<"4.Display items in the stock"<<endl;
+		cout<<"5.Purchase item"<<endl;
+		cout<<"6.Quit"<<endl;
+		cout<<"Enter your choice : "<<" ";
+		cin>>choice;
+		switch (choice) 
+		{
+			case 1:
+				stock[stockCount].add();
+				cout<<"---------Item added successfully--------"<<endl;
+				stockCount++;
+				break;
+			case 2:
+			{
+				int searchKey;
+				cout<<"Item Code : ";
+				cin>>searchKey;
+				for (int i = 0; i < stockCount; i++) {
+					if (searchKey==stock[i].check_code())
+					{
+						found = true;
+						keyPosition = i;
+						cout<<"--------Item deleted successfully--------"<<endl;
+						break;
+					}
+				}
+				if (!found)
+				{
+					cout<<"Invalid code"<<endl;
+				}
+				else
+				{
+					for (int i = keyPosition; i < stockCount; ++i)
+					{
+						stock[i]=stock[i+1];
+					}
+					stockCount--;
+				}
+			}
+			break;
+			case 3:
+			{
+				bool found = false;
+				cout<<"Item Code\tItem Name\tItem Price\tItem Quantity"<<endl;
+				for (int i = 0; i < stockCount; ++i) 
+				{
+					stock[i].display_details();
+				}
+				int searchKey;
+				cout<<"Enter the Item Code : ";
+				cin>>searchKey;
+				for (int i = 0; i < stockCount; i++) 
+				{
+					if (searchKey==stock[i].check_code())
+					{
+						int x;
+						cout<<"Enter the Amount of Quantity : ";
+						cin>>x;
+						stock[i].update_quantity(x);
+						found = true;
+						cout<<"Successfully Updated"<<endl;
+						break;
+					}
+				}
+				if(!found){
+					cout<<"Invalid Code"<<endl;
+				}
+			}
+				break;
+			case 4:
+			{
+				cout<<"Item Code\tItem Name\tItem Price\tItem Quantity"<<endl;
+				for (int i = 0; i < stockCount; ++i) 
+				{
+					stock[i].display_details();
+			    }
+			}    
+			break;
+			case 5:
+			{
+			    do
+			    {
+			        bool purchased = false;
+				    int tempItemCode,tempItemQuantity;
+				    cout<<"Enter the Item Code"<<endl;
+				    cin>>tempItemCode;
+				    cout<<"Quantity you want to purchase"<<endl;
+				    cin>>tempItemQuantity;
+				    for (int i = 0; i < stockCount; i++) 
+				    {
+				        if (tempItemCode==stock[i].check_code())
+				        {
+				            if(tempItemQuantity>stock[i].check_quantity())
+				            {
+				                cout<<"Insufficient Stock"<<endl;
+							    break;
+				            } 
+						    purchased = true;
+						    shoppingList[shoppingCount]=stock[i];
+						    shoppingList[shoppingCount].new_quantity(tempItemQuantity);
+						    stock[i].alterQuantity(tempItemQuantity);
+						    shoppingList[shoppingCount].display_details();
+						    shoppingCount++;
+						    break;
+				        }
+				    }
+				    cout<<"Do you want to continue purchase"<<endl;
+				cout<<"1.Continue"<<endl;
+				cout<<"2.Generate Bill"<<endl;
+				cin>>ch;
+				float total;
+				if(ch==2 and purchased==true){
+					cout<<"Your Purchase Bill"<<endl;
+					cout<<"Item Code\tItem Name\tItem Price\tItem Quantity"<<endl;
+					for (int i = 0; i < shoppingCount; ++i) {
+						shoppingList[i].display_details();
+						total = total+ shoppingList[i].generateSum();
+					}
+					cout<<"Total price = "<<total<<endl;
+				}
+				}
+			  while(ch==1);
+			  break;
+			  case 6:
+			  {
+			      default:
+				   break;
+			  }
+			
+		}
+		
+		char p;
+        if (choice!=6)
+        {
+            cout<<"Do you want to continue(y/n)? : "<<" ";
+            cin>>p;
+            if (p=='n')
+            {
+                choice=6;
+            }
+        }
+		}
+    } while (choice!=6);
+	return (0);
+}

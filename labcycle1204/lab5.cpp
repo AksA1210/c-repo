@@ -26,9 +26,21 @@ MATRIX::MATRIX(int x,int y)
         p[i]=new int [d2];
     }
 }
+MATRIX::~MATRIX()
+{
+    for(int i=0;i<d1;i++)
+    {
+        delete p[i];
+    }
+    delete p;
+    cout<<"Memory released "<<endl;
+    
+}
+char p;    
 int main()
 {
     int m,n;
+    do{
     cout<<"Enter size of matrix : "<<" ";
     cin>>m>>n;
     MATRIX A(m,n);
@@ -50,17 +62,9 @@ int main()
         }
         cout<<endl;
     }
+    cout<<"Do you want to continue(y/n)? :  "<<endl;
+    cin>>p;
+    }
+    while (p!='n');
     return(0);
 }
-MATRIX::~MATRIX()
-{
-    for(int i=0;i<d1;i++)
-    {
-        delete p[i];
-    }
-    delete p;
-    cout<<"Memory released "<<endl;
-    
-}
-    
-   

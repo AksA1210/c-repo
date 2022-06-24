@@ -1,0 +1,387 @@
+#include<iostream>                //lc 2 q1
+#include<cmath>
+using namespace std;
+class vector
+{
+
+    float x,y,z;
+    float magnitude;
+    public:
+    void get_vector()
+    {
+        cout<<"Enter the component along x-axis : "<<endl;
+        cin>>x;
+        cout<<"Enter the component along y-axis : "<<endl;
+        cin>>y;
+        cout<<"Enter the component along z-axis : "<<endl;
+        cin>>z;
+    }
+    void display_vector()
+    {
+        if(y<0)
+        {
+            cout<<x<<"i - "<<abs(y)<<"j + "<<z<<" k"<<endl;
+        }
+        else if(z<0)
+        {
+            cout<<x<<"i + "<<y<<"j - "<<abs(z)<<" k"<<endl;
+        }
+        else if(y<0&&z<0)
+        {
+            cout<<x<<"i + "<<abs(y)<<"j - "<<abs(z)<<" k"<<endl;
+        }
+        else
+        {
+            cout<<x<<"i + "<<y<<"j + "<<z<<" k"<<endl;
+        }
+        
+    }
+    void operator==(const vector &);
+    void operator!=(const vector &);
+    void operator<(const vector &);
+    void operator>(const vector &);
+    void operator<=(const vector&);
+    void operator>=(const vector &);
+    void get_magnitude(void)
+    {
+        magnitude=(x*x)+(y*y)+(z*z);
+        magnitude=sqrtf(magnitude);
+        cout<<"The magnitude of the vector is : "<<magnitude<<endl;
+    }
+};
+void vector::operator==(const vector&a)
+{
+    if(magnitude==a.magnitude)
+    {
+        cout<<"Vector 1 :";
+        magnitude;
+        cout<<endl;
+        cout<<"Vector 2 :";
+        a.magnitude;
+        cout<<endl;
+        cout<<"Vector 1 and vector 2 are equal"<<endl;
+    }
+    else
+    {
+        cout<<"Vector 1 and vector 2 are not equal"<<endl;
+    }
+}
+void vector::operator!=(const vector&a)
+{
+    if(magnitude!=a.magnitude)
+    {
+        cout<<"Vector 1 and Vector 2 are not equal"<<endl;
+    }
+    else
+    {
+        cout<<"Vector 1 and vector 2 are equal"<<endl;
+    }
+}
+void vector::operator<(const vector&a)
+{
+    if(magnitude<a.magnitude)
+    {
+        cout<<"Vector 2 is greater than vector 1 "<<endl;
+    }
+    else
+    {
+        cout<<"Vector 1 is greater than vector 2"<<endl;
+    }
+}
+void vector::operator<=(const vector&a)
+{
+    if(magnitude<a.magnitude)
+    {
+        cout<<"Vector 2 is greater than vector 1"<<endl;
+    }
+    else if(magnitude==a.magnitude)
+    {
+        cout<<"Vector 1 and vector 2 are equal"<<endl;
+    }
+    else
+    {
+        cout<<"Vector 1 is greater than vector 2"<<endl;
+    }
+}
+void vector::operator>(const vector&a)
+{
+    if(magnitude>a.magnitude)
+    {
+        cout<<"Vector 1 is greater than vector 2"<<endl;
+    }
+    else
+    {
+        cout<<"Vector 1 is lesser than vector 2"<<endl;
+        
+    }
+}
+void vector::operator>=(const vector&a)
+{
+    if(magnitude>a.magnitude)
+    {
+        cout<<"Vector 1 is greater than vector 2"<<endl;
+    }
+    else if(magnitude==a.magnitude)
+    {
+        cout<<"Vector 1 and Vector 2 are equal"<<endl;
+    }
+    else
+    {
+        cout<<"Vector 2 is greater than vector 1"<<endl;
+    }
+}
+int main()
+{
+    int p;
+    int count=1;
+    do
+    {
+        int a,b,c;
+	    vector v1,v2;
+        if(count==1)
+        {
+        cout<<"-------Vector 1-------"<<endl;
+        v1.get_vector();
+        v1.display_vector();
+        cout<<"-------Vector 2-------"<<endl;
+        v2.get_vector();
+        v2.display_vector();
+        count=0;
+        }
+        cout<<"You can do the following : "<<endl;
+        cout<<"Enter appropriate number : "<<endl;
+        cout<<"1 : Vector 1 == Vector 2"<<endl;
+        cout<<"2 : Vector 1 != Vector 2 "<<endl;
+        cout<<"3 : Vector 1 < Vector 2 "<<endl;
+        cout<<"4 : Vector 1 <= Vector 2  "<<endl;
+        cout<<"5 : Vector 1 > Vector 2  "<<endl;
+        cout<<"6 : Vector 1 >= Vector 2  "<<endl;
+	    cout<<"7 : Enter the new vector "<<endl;
+        cout<<endl;
+        cout<<"Enter your choice : "<<" ";
+        cin>>p;
+        v1.get_magnitude();
+        switch(p)
+        {
+
+           case 1:
+           v1==v2;
+           break;
+           case 2: 
+           v1!=v2;
+           break;
+           case 3:
+           v1<v2;
+           break;
+           case 4: 
+           v1<=v2;
+           case 5:
+           v1>v2;
+           break;
+           case 6:
+           v1>=v2;
+            break;
+ 	       case 7:
+ 	       count=1;
+ 	       break;
+           case 8:break;
+           default:cout<<"Error ! Please try again "<<endl;
+        }
+        char g;
+        if (p!=8)
+        {
+        cout<<endl;
+        cout<<"Do you want to continue(y/n)?"<<" ";
+        cin>>g;
+        if (g=='n')
+        {
+            p=8;
+        }
+        }
+    } while (p!=8);
+   return (0);
+}   
+
+
+
+//code
+
+
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+class Vector
+{
+	float i,j,k,magnitude;
+public:
+	void get_data();
+	void display_vector();
+	void vector_magnitude();
+	void operator==(Vector&);
+	void operator!=( Vector&);
+	void operator<( Vector&);
+	void operator<=( Vector&);
+	void operator>( Vector&);
+	void operator>=( Vector&);
+};
+
+void Vector::get_data()
+{
+	cout<<"Enter the i,j,k components of the vector"<<endl;
+	cin>>i>>j>>k;
+	
+}
+
+void Vector::display_vector()
+{
+	
+		cout<<i<<"i + "<<j<<"j + "<<k<<"k"<<endl;
+	
+}
+
+
+void Vector::vector_magnitude()
+{
+	magnitude = (i*i)+(j*j)+(k*k);
+	magnitude = sqrtf(magnitude);
+    cout<<"Magnitude of the vector is "<<magnitude<<endl;
+}
+
+
+void Vector::operator==( Vector &V)
+{
+	if (magnitude == V.magnitude)
+	{
+		cout<<"The vectors are equal"<<endl;
+	}
+	else
+	{
+		cout<<"The vectors are not equal"<<endl;
+	}
+}
+
+void Vector::operator!=(Vector &V)
+{
+	if (magnitude != V.magnitude)
+	{
+		cout<<"Vectors are not equal "<<endl;
+	}
+	else
+	{
+		cout<<"Equal vectors"<<endl;
+	}
+}
+
+void Vector::operator<(Vector &V)
+{
+	if (magnitude < V.magnitude) {
+		cout<<"Vector 2  greater than vector 1\n";
+	}
+	else {
+		cout<<"Vector 1 greater than vector 2\n";
+	}
+}
+
+void Vector::operator<=(Vector &V)
+{
+	if (magnitude < V.magnitude) 
+	{
+		cout<<"Vector 2  greater than vector 1"<<endl;
+	}
+	else if(magnitude == V.magnitude)
+	{
+		cout<<"The vectors are equal"<<endl;
+	}
+	else 
+	{
+		cout<<"Vector 1 greater than vector 2"<<endl;
+	}
+}
+
+void Vector::operator>(Vector &V)
+{
+	if (magnitude > V.magnitude) {
+		cout<<"Vector 1  greater than vector 2"<<endl;
+	}
+	else 
+	{
+		cout<<"Vector 2 is greater than vector 1"<<endl;
+	}
+}
+void Vector::operator>=(Vector &V)
+{
+	if (magnitude > V.magnitude) 
+	{
+		cout<<"Vector 1 is greater than Vector 2"<<endl;
+	}
+	else if(magnitude == V.magnitude)
+	{
+		cout<<"The vectors are equal"<<endl;
+	}
+	else 
+	{
+		cout<<"Vector 2 is greater than Vector 1"<<endl;
+	}
+}
+
+int main()
+{ 
+  int option;
+	cout<<"\tWELCOME\t"<<endl;
+	cout<<"Do you want to proceed?"<<endl;
+	cout<<"1:Yes" <<endl;
+	cout<<"2:No" <<endl;
+	cin>>option;
+
+	if (option==2) 
+	{
+		
+		return 0;
+	}
+
+	Vector V1,V2;
+	int choice,ch;
+	cout<<"Vector V1"<<endl;
+	V1.get_data();
+	cout<<"\nVector V2"<<endl;
+	V2.get_data();
+	cout<<"Vector 1:"<<endl;
+	V1.display_vector();
+	V1.vector_magnitude();
+	cout<<"Vector 2:"<<endl;
+	V2.display_vector();
+	V2.vector_magnitude();
+
+	do {
+		cout<<"\nChoose any one of the following operations \n1.Vector1 == Vector2\n2.Vector1 != Vector2\n3.Vector1 <  Vector2\n4.Vector1 <= Vector2\n5.Vector1 >  Vector2\n6.Vector1 >= Vector2\n7.Quit"<<endl;
+		cin>>choice;
+		switch (choice) {
+			case 1:
+				V1== V2;
+				break;
+			case 2:
+				V1!= V2;
+				break;
+			case 3:
+				V1< V2;
+				break;
+			case 4:
+				V1<= V2;
+				break;
+			case 5:
+				V1> V2;
+				break;
+			case 6:
+				V1>= V2;
+				break;
+			case 7:break;
+		}
+		cout<<"Do you want to Continue ?"<<endl;
+		cout <<"If yes enter 1 or if no enter 0"<<endl;
+		cin>>ch;
+	} while (ch!=0);
+	
+	return 0;
+}
+	
