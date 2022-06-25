@@ -1,0 +1,41 @@
+#include<iostream>
+using namespace std;
+int K=1;
+int N,ITEM;
+int LOC=NULL;
+int main()
+{
+    
+cout<<"Enter the number of elements : "<<endl;
+cin>>N;
+int DATA[N];
+for (int i=0;i<N;i++)
+{
+    cin>>DATA[i];
+}
+return(0);
+}
+void linear_search(DATA,N,ITEM,LOC)
+{
+    cout<<"Enter the item to be located : "<<endl;
+    cin>>ITEM;
+    while (LOC=NULL && K<=N)
+    {
+        if  DATA[K]==ITEM
+        {
+            LOC=K;
+        }
+        K++;
+    }
+    if (LOC==NULL)
+    {
+        cout<<"ITEM not found"<<endl;
+    }
+    else
+    {
+        cout<<"ITEM is present at",LOC," ",DATA[LOC]<<endl;
+    }
+}
+
+linear_search(DATA,N,ITEM,LOC)
+   
