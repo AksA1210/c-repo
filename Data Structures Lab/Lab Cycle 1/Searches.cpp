@@ -1,26 +1,25 @@
-
 #include<iostream>
 #include<cmath>
 using namespace std;
-void linear_search(DATA,N,ITEM,LOC)
-{
-    cout<<"Enter the item to be located : "<<endl;
+void linear_search(int DATA[],int N,int ITEM,int LOC)
+{  cout<<"Enter the item to be located : "<<endl;
     cin>>ITEM;
-    while (LOC=NULL && K<=N)
+    int K;
+    while (LOC=-1 && K<=N)
     {
-        if  DATA[K]==ITEM
+        if  (DATA[K]==ITEM)
         {
             LOC=K;
         }
         K++;
     }
-    if (LOC==NULL)
+    if (LOC==-1)
     {
         cout<<"ITEM not found"<<endl;
     }
     else
     {
-        cout<<"ITEM is present at",LOC," ",DATA[LOC]<<endl;
+        cout<<"ITEM is present at"<<LOC<<" "<<DATA[LOC]<<endl;
     }
 }
 
@@ -65,17 +64,17 @@ int ternary_search(int DATA[],int N,int ITEM,int LOC)
             int LOC=MID1;
             break;
         }
-        if (ITEM==DATA[MID2])
+        else if (ITEM==DATA[MID2])
         {
             int LOC=MID2;
             break;
         }
-        if (ITEM<DATA[MID1])
+        else if (ITEM<DATA[MID1])
         {
             END=MID1-1;
             break;
         }
-        if (ITEM>DATA[MID2])
+        else if (ITEM>DATA[MID2])
         {
             BEGIN=MID2+1;
             break;
@@ -101,7 +100,7 @@ int inter_search(int DATA[],int N,int ITEM,int POS)
         {
             int LOC=POS;
         }
-        if(ITEM>DATA[POS])
+        else if(ITEM>DATA[POS])
         {
             BEGIN=POS+1;
         }
@@ -114,9 +113,8 @@ int inter_search(int DATA[],int N,int ITEM,int POS)
     LOC=-1;
 }
 
-void fib_search()
-{
-      int fib_search(int DATA[],int ITEM,int N,int LOC)
+
+int fib_search(int DATA[],int ITEM,int N,int LOC)
 {
     int f1=0;
     int f2=1;
@@ -138,7 +136,7 @@ void fib_search()
             f1=f-f2;
             p=i;
         }
-        if (DATA[i]>ITEM)
+        else if (DATA[i]>ITEM)
         {
             f=f1;
             f2=f-f1;
@@ -151,9 +149,6 @@ void fib_search()
     return(LOC);    
     }
 }
-
-    
-}
 void display()
 {
     
@@ -161,7 +156,7 @@ void display()
 
 int main()      //Menu
 {
-    int choice;
+    int choice,ITEM,LOC;
     //LOC=NULL;
     int num;
     cout<<"Enter the no: of elements : "<<" ";
@@ -171,6 +166,9 @@ int main()      //Menu
     {
         cin>>DATA[i];
     }
+    do{
+    cout<<"Enter the item to be searched : "<<" ";
+    cin>>ITEM;
     cout<<"\nSEARCH METHODS";
     cout<<"\n1.Linear Search";
     cout<<"\n2.Binary Search";
@@ -187,15 +185,18 @@ int main()      //Menu
         {
             //int BEGIN,END;
            // linear_search();
-            linear_search(DATA,N,ITEM,LOC)
+            //int N;
+            linear_search(DATA,num,ITEM,LOC);
+			 break;
         }
-        break;
+       
         case 2:
         {
             int LB,UB,ITEM,LOC;
-            binary_search(DATA[],LB,UB,ITEM,LOC);
+            binary_search(DATA,LB,UB,ITEM,LOC);
+			break;
         }
-        break;
+        
         case 3:
         {
             int BEGIN,END;
@@ -210,10 +211,12 @@ int main()      //Menu
     {
         cout<<"Element is found at position number : "<<t+1<<endl;
     }
-}
+	 break;
+	 }
            // ternary_search();
-        }
-        break;
+			
+        
+       
         case 4:
         {
             int BEGIN,END;
@@ -229,22 +232,26 @@ int main()      //Menu
         cout<<"Element is found at position number : "<<i+2<<endl;
     }
 
-            inter_search();
+            //inter_search( DATA, N, ITEM, POS);
+          break;   
         }
-        break;
+       
         case 5:
         {
-            fib_search();
+            fib_search( DATA, num, ITEM, LOC);
+            break;
         }
-        break;
+        
         case 6:
         {
             display();
+            break;
         }
         case 7:
         break;
         default:
 			cout<<("Wrong choice\n");
+	}		
        char p;
     if(choice!=7)
     {
@@ -254,8 +261,8 @@ int main()      //Menu
         {
             choice=7;
         }
-    }while(choice!=7);
     }
+    }while(choice!=7);
     return(0);   
     
 }
