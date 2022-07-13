@@ -66,14 +66,6 @@ void merge_sort()
 
 }
 
-
-
-
-
-
-
-
-
 int main()
 {
     int choice;
