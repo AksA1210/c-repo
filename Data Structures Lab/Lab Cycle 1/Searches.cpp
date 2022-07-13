@@ -1,8 +1,8 @@
 #include<iostream>
 #include<cmath>
 using namespace std;
-void linear_search(int DATA[],int N,int ITEM,int LOC)
-{  cout<<"Enter the item to be located : "<<endl;
+int linear_search(int DATA[],int N,int ITEM,int LOC)
+{  cout<<"Enter the item to be located : "<< "  ";
     cin>>ITEM;
     int K;
     while (LOC=-1 && K<=N)
@@ -10,47 +10,36 @@ void linear_search(int DATA[],int N,int ITEM,int LOC)
         if  (DATA[K]==ITEM)
         {
             LOC=K;
+            return(LOC);
         }
         K++;
     }
-    if (LOC==-1)
-    {
-        cout<<"ITEM not found"<<endl;
-    }
-    else
-    {
-        cout<<"ITEM is present at"<<LOC<<" "<<DATA[LOC]<<endl;
-    }
 }
 
-void binary_search(int DATA[],int LB,int UB,int ITEM,int LOC)
+int binary_search(int DATA[],int N,int ITEM)
 {
-    int BEGIN,END,MID;
-    BEGIN=LB;
-    END=UB;
-    MID=floor((BEGIN+END)/2);
-    while ((DATA[MID])!=ITEM && BEGIN<=END)
+    cout<<"Enter the item to be searched : "<<" ";
+    cin>>ITEM;
+    int LEFT=0;
+    int RIGHT=N-1;
+    while(LEFT<=RIGHT)
     {
-        if (ITEM<DATA[MID])
+        int MID=floor((LEFT+RIGHT)/2);
+        if (ITEM==DATA[MID])
         {
-            END=MID-1;
+            return(MID);
+        }
+        else if (DATA[MID]>ITEM)
+        {
+            RIGHT=MID-1;
         }
         else
         {
-            BEGIN=END-1;
+            LEFT=MID+1;
         }
-        MID=floor((BEGIN+END)/2);
-    }        
-    if (DATA[MID]==ITEM)
-    {
-        LOC=MID;
     }
-    else
-    {
-        LOC=-1;
-    }
-    
-}
+    return (-1);
+}    
 int ternary_search(int DATA[],int N,int ITEM,int LOC)
 {
     int BEGIN=1;
@@ -84,7 +73,7 @@ int ternary_search(int DATA[],int N,int ITEM,int LOC)
             BEGIN=MID1+1;
             END=MID2-1;
         }
-        return(LOC+1);
+        return(LOC+2);
     }
    //LOC=-1;
 }
@@ -95,8 +84,8 @@ int inter_search(int DATA[],int N,int ITEM,int POS)
     int LOC;
     while(BEGIN<=END && ITEM>=DATA[BEGIN]&& ITEM<=DATA[END])
     {
-        POS=BEGIN+((ITEM-DATA[BEGIN])/DATA[END]-DATA[BEGIN]) * (END-BEGIN);
-        if (ITEM=DATA[POS])
+        POS=BEGIN+((ITEM-DATA[BEGIN])/(DATA[END]-DATA[BEGIN])) * (END-BEGIN);
+        if (ITEM==DATA[POS])
         {
             int LOC=POS;
         }
@@ -108,13 +97,13 @@ int inter_search(int DATA[],int N,int ITEM,int POS)
         {
             END=POS-1;
         }
+        LOC=-1;
     }
-    return(LOC+1);
-    LOC=-1;
+    return(LOC);
 }
 
 
-int fib_search(int DATA[],int ITEM,int N,int LOC)
+int fib_search(int DATA[],int N,int ITEM,int LOC)
 {
     int f1=0;
     int f2=1;
@@ -144,14 +133,26 @@ int fib_search(int DATA[],int ITEM,int N,int LOC)
         }
         else
         {
-            int LOC=i;
+            LOC=i;
         }
-    return(LOC);    
     }
+    if(f2==1 && DATA[p+1]==ITEM)
+    {
+        LOC=p+1;
+    }
+    else
+    {
+        LOC=-1;
+    }
+    return(LOC);    
 }
-void display()
+void display(int DATA[],int N)
 {
-    
+    cout<<"The elements are : "<<" ";
+    for(int i=0;i<N;i++)
+    {
+        cout<<DATA[i]<<"  ";
+    }
 }
 
 int main()      //Menu
@@ -162,14 +163,18 @@ int main()      //Menu
     cout<<"Enter the no: of elements : "<<" ";
     cin>>num;
     int DATA[num];
+    cout<<"Enter the elements one by one : "<<" ";
     for(int i=0;i<num;i++)
     {
         cin>>DATA[i];
     }
+    cout<<"The elements are : "<<" ";
+    for(int i=0;i<num;i++)
+    {
+        cout<<DATA[i]<<"   ";
+    }
     do{
-    cout<<"Enter the item to be searched : "<<" ";
-    cin>>ITEM;
-    cout<<"\nSEARCH METHODS";
+    cout<<"\n------------------------SEARCH METHODS----------------";
     cout<<"\n1.Linear Search";
     cout<<"\n2.Binary Search";
     cout<<"\n3.Ternary Search";
@@ -186,14 +191,23 @@ int main()      //Menu
             //int BEGIN,END;
            // linear_search();
             //int N;
-            linear_search(DATA,num,ITEM,LOC);
+            int l=linear_search(DATA,num,ITEM,LOC);
+            if (l==-1)
+           {
+               cout<<"ITEM not found"<<endl;
+           }
+        else
+        {
+            cout<<"ITEM ("<<DATA[l]<<") is present at index number "<<l <<endl;
+        }
 			 break;
         }
        
         case 2:
         {
-            int LB,UB,ITEM,LOC;
-            binary_search(DATA,LB,UB,ITEM,LOC);
+            int ITEM;
+            int LOC=binary_search(DATA,num,ITEM);
+            cout<<"The element is found at index no. "<<LOC<<"  " <<endl;
 			break;
         }
         
@@ -203,18 +217,16 @@ int main()      //Menu
              cout<<"Enter the item to be searched : "<<" ";
     cin>>ITEM;
     int t=ternary_search(DATA,num,ITEM,LOC);
-    if (t==0)
+    if (t==-1)
     {
         cout<<"Element not found"<<endl;
     }
     else
     {
-        cout<<"Element is found at position number : "<<t+1<<endl;
+        cout<<"Element is found at index number : "<<t<<endl;
     }
 	 break;
 	 }
-           // ternary_search();
-			
         
        
         case 4:
@@ -223,28 +235,36 @@ int main()      //Menu
 	 cout<<"Enter the item to be searched : "<<" ";
     cin>>ITEM;
     int i=inter_search(DATA,num,ITEM,LOC);
-    if (i==0)
+    if (i==-1)
     {
         cout<<"Element not found"<<endl;
     }
     else
     {
-        cout<<"Element is found at position number : "<<i+2<<endl;
+        cout<<"Element is found at index number : "<<i+1<<endl;
     }
-
-            //inter_search( DATA, N, ITEM, POS);
           break;   
         }
        
         case 5:
         {
-            fib_search( DATA, num, ITEM, LOC);
+            cout<<"Enter item to be searched : "<<" ";
+            cin>>ITEM;
+            int f=fib_search(DATA,num,ITEM,LOC);
+            if (f==-1)
+    {
+        cout<<"Element not found"<<endl;
+    }
+    else
+    {
+        cout<<"Element is found at index number : "<<f<<endl;
+    }
             break;
         }
         
         case 6:
         {
-            display();
+            display(DATA,num);
             break;
         }
         case 7:
