@@ -1,3 +1,4 @@
+
 #include<iostream>
 using namespace std;
 void Insert(int DATA[],int N,int k,int ITEM)
@@ -59,8 +60,6 @@ int main()
         {
             case 1:
             {
-                //cout<<"Enter the number of elements : " <<" ";
-                //cin>>n;
                 for(int i=0;i<n;i++)
                 {
                     cout<<"Enter the element : "<<" ";
@@ -71,13 +70,18 @@ int main()
            
             case 2:
             {
-                cout<<"Enter the position : "<< " ";
-                cin>>k;
-                cout<<"Enter the element : "<<" ";
-                cin>>l;
-                Insert(DATA,n,k,l);
+                int num;
+                cout<<"Enter the number of elements to be inserted : "<<" ";
+                cin>>num;
+                for(int i=0;i<num;i++)
+                {
+                    cout<<"Enter the position : "<< " ";
+                    cin>>k;
+                    cout<<"Enter the element : "<<" ";
+                    cin>>l;
+                    Insert(DATA,n+i+1,k,l);
+                }
                 break;
-            
             }
             case 3:
             {
