@@ -53,7 +53,6 @@ int ternary_search(int DATA[],int N,int ITEM,int LOC)
         {
             int LOC=MID1;
             return (LOC);
-            break;
         }
         else if (ITEM==DATA[MID2])
         {
@@ -81,14 +80,14 @@ int ternary_search(int DATA[],int N,int ITEM,int LOC)
 int inter_search(int DATA[],int N,int ITEM)
 {
     int BEGIN=0;
-    int END=N;
+    int END=N-1;
     int POS;
     while(BEGIN<=END && ITEM>=DATA[BEGIN]&& ITEM<=DATA[END])
     {
         POS=BEGIN+((ITEM-DATA[BEGIN])/(DATA[END]-DATA[BEGIN])) * (END-BEGIN);
         if (ITEM==DATA[POS])
         {
-            return(POS-1);
+            return(POS);
         }
         else if(ITEM>DATA[POS])
         {
@@ -128,23 +127,20 @@ int fib_search(int DATA[],int N,int ITEM,int LOC)
         else if (DATA[i]>ITEM)
         {
             f=f1;
-            f2=f-f1;
+            f2=f2-f1;
             f1=f-f2;
         }
         else
         {
             LOC=i;
+            return(LOC);
         }
     }
-    if(f2==1 && DATA[p+1]==ITEM)
+    if(f==1 && DATA[p+1]==ITEM)
     {
         LOC=p+1;
     }
-    else
-    {
-        LOC=-1;
-    }
-    return(LOC);    
+    return(-1);    
 }
 void display(int DATA[],int N)
 {
@@ -238,7 +234,7 @@ int main()      //Menu
     }
     else
     {
-        cout<<"Element is found at index number : "<<i+1<<endl;
+        cout<<"Element is found at index number : "<<i<<endl;
     }
           break;   
         }
