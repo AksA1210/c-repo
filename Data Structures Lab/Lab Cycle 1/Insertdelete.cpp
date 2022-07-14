@@ -4,7 +4,7 @@ using namespace std;
 void Insert(int DATA[],int N,int k,int ITEM)
 {
   int j=N;
-  while(j>=k)
+  while(j>=k-1)
   {
       DATA[j+1]=DATA[j];
       j--;
@@ -22,12 +22,14 @@ void Insert(int DATA[],int N,int k,int ITEM)
 void del(int DATA[],int N,int ITEM)
 {
     int k;
+    cout<<"Enter the position of the element which is to be deleted : "<<" ";
+    cin>>k;
     ITEM=DATA[k];
     for(int j=k;j<N;j++)
     {
-        DATA[j]=DATA[j+1];
+        DATA[j-1]=DATA[j];
     }
-    N=N-1;
+    N=N--;
     cout<<"Element deleted"<<endl;
     cout<<"ARRAY AFTER DELETION"<<endl;
     for(int i=0;i<N;i++)
@@ -58,32 +60,37 @@ int main()
         {
             case 1:
             {
-                //cout<<"Enter the number of elements : " <<" ";
-                //cin>>n;
                 for(int i=0;i<n;i++)
                 {
                     cout<<"Enter the element : "<<" ";
                     cin>>DATA[i];
                 }
+                break;
             }
-            break;
+           
             case 2:
             {
-                cout<<"Enter the position : "<< " ";
-                cin>>k;
-                cout<<"Enter the element : "<<" ";
-                cin>>l;
-                Insert(DATA,n,k,l);
-            
+                int num;
+                cout<<"Enter the number of elements to be inserted : "<<" ";
+                cin>>num;
+                for(int i=0;i<num;i++)
+                {
+                    cout<<"Enter the position : "<< " ";
+                    cin>>k;
+                    cout<<"Enter the element : "<<" ";
+                    cin>>l;
+                    Insert(DATA,n+i+1,k,l);
+                }
+                break;
             }
-            break;
             case 3:
             {
                 cout<<"Enter the element to be deleted : "<<" ";
                 cin>>l;
                 del(DATA,n,l);
+                break;
             }
-            break;
+           
             case 4:
             {
                 cout<<"ARRAY = "<<" ";
@@ -92,8 +99,9 @@ int main()
                     cout<<DATA[i]<<"  ";
                 }
                 cout<<endl;
+                break;
             }
-            break;
+            
             case 5:
             break;
             default:cout<<"Error ! Please try again "<<endl;
