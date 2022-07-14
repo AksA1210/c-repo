@@ -2,40 +2,45 @@
 using namespace std;
 void Insert(int DATA[],int N,int k,int ITEM)
 {
-  int n;
   int j=N;
-  //cout<<"Enter posn"<<" ";
-  //cin>>k;
-  while(j>=k)
+  while(j>=k-1)
   {
       DATA[j+1]=DATA[j];
       j--;
   }
-  DATA[k]=ITEM;
+  DATA[k-1]=ITEM;
   N++;
-  cout<<"Element inserted";
+  cout<<"Element inserted"<<endl;
   cout<<"ARRAY AFTER INSERTION "<<endl;
-  for(int i=0;i<n;i++)
+  for(int i=0;i<N;i++)
   {
      cout<<DATA[i]<<" ";
   }
   cout<<endl;
 }    
-void DELETE(int DATA[],int N,int ITEM)
+void del(int DATA[],int N,int ITEM)
 {
     int k;
+    cout<<"Enter the position of the element which is to be deleted : "<<" ";
+    cin>>k;
     ITEM=DATA[k];
-    for(int j=k;j<N-1;)
+    for(int j=k;j<N;j++)
     {
-        DATA[j]=DATA[j+1];
+        DATA[j-1]=DATA[j];
     }
     N=N--;
-    cout<<"Element deleted";
+    cout<<"Element deleted"<<endl;
+    cout<<"ARRAY AFTER DELETION"<<endl;
+    for(int i=0;i<N;i++)
+    {
+        cout<<DATA[i]<<" ";
+    }
+    cout<<endl;
 
 }
 int main()
 {
-    int ch,n,k,l,N,o,d;
+    int ch,n,k,l,o,d;
     char p;
     cout<<"Enter the number of elements : " <<" ";
     cin>>n;
@@ -61,35 +66,38 @@ int main()
                     cout<<"Enter the element : "<<" ";
                     cin>>DATA[i];
                 }
+                break;
             }
-            break;
+           
             case 2:
             {
                 cout<<"Enter the position : "<< " ";
                 cin>>k;
                 cout<<"Enter the element : "<<" ";
                 cin>>l;
-                Insert( DATA, N,  k,  l);
+                Insert(DATA,n,k,l);
+                break;
             
             }
-            break;
             case 3:
             {
-                cout<<"Enter the element : "<<" ";
+                cout<<"Enter the element to be deleted : "<<" ";
                 cin>>l;
-                DELETE( DATA,N,l);
+                del(DATA,n,l);
+                break;
             }
-            break;
+           
             case 4:
             {
-                cout<<"ARRAY = "<<endl;
+                cout<<"ARRAY = "<<" ";
                 for(int i=0;i<n;i++)
                 {
-                    cout<<DATA[i]<<" ";
+                    cout<<DATA[i]<<"  ";
                 }
                 cout<<endl;
+                break;
             }
-            break;
+            
             case 5:
             break;
             default:cout<<"Error ! Please try again "<<endl;
@@ -97,7 +105,7 @@ int main()
         }
         if (ch!=5)
         {
-          cout<<"Do you want to continue(y/n)? : "<<endl;
+          cout<<"Do you want to continue(y/n)? : "<<" ";
           cin>>p;
           if (p=='n')
           {
@@ -110,61 +118,3 @@ int main()
   
     
 }
-
-//without switchcase
-
-#include<iostream>
-using namespace std;
-void Insert(int DATA[],int N,int k,int ITEM)
-{
-  int n;
-  int j=N;
-  //cout<<"Enter posn"<<" ";
-  //cin>>k;
-  while(j>=k)
-  {
-      DATA[j+1]=DATA[j];
-      j=j-1;
-  }
-  DATA[k]=ITEM;
-  N=N+1;
-  cout<<"Element inserted";
-  cout<<"ARRAY AFTER INSERTION "<<endl;
-  for(int i=0;i<n;i++)
-  {
-     cout<<DATA[i]<<" ";
-  }
-  cout<<endl;
-}    
-void DELETE(int DATA[],int N,int ITEM)
-{
-    int k;
-    ITEM=DATA[k];
-    for(int j=k;j<N-1;)
-    {
-        DATA[j]=DATA[j+1];
-    }
-    N=N--;
-    cout<<"Element deleted";
-
-}
-int main()
-{
-    int ch,n,k,l,N,o,d;
-    char p;
-    cout<<"Enter the number of elements : " <<" ";
-    cin>>n;
-    int DATA[n];
-    for(int i=0;i<n;i++)
-                {
-                    cout<<"Enter the element : "<<" ";
-                    cin>>DATA[i];
-                }
-    cout<<"Enter the position : "<< " ";
-                cin>>k;
-                cout<<"Enter the element : "<<" ";
-                cin>>l;
-                Insert( DATA, N,  k,  l);
-    return(0) ;
-}    
-
