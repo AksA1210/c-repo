@@ -14,6 +14,7 @@ int linear_search(int DATA[],int N,int ITEM,int LOC)
         }
         K++;
     }
+    return(-1);
 }
 
 int binary_search(int DATA[],int N,int ITEM)
@@ -51,6 +52,7 @@ int ternary_search(int DATA[],int N,int ITEM,int LOC)
         if (ITEM==DATA[MID1])
         {
             int LOC=MID1;
+            return (LOC);
             break;
         }
         else if (ITEM==DATA[MID2])
@@ -73,21 +75,20 @@ int ternary_search(int DATA[],int N,int ITEM,int LOC)
             BEGIN=MID1+1;
             END=MID2-1;
         }
-        return(LOC+2);
     }
-   //LOC=-1;
+    return(-1);
 }
-int inter_search(int DATA[],int N,int ITEM,int POS)
+int inter_search(int DATA[],int N,int ITEM)
 {
     int BEGIN=0;
     int END=N;
-    int LOC;
+    int POS;
     while(BEGIN<=END && ITEM>=DATA[BEGIN]&& ITEM<=DATA[END])
     {
         POS=BEGIN+((ITEM-DATA[BEGIN])/(DATA[END]-DATA[BEGIN])) * (END-BEGIN);
         if (ITEM==DATA[POS])
         {
-            int LOC=POS;
+            return(POS-1);
         }
         else if(ITEM>DATA[POS])
         {
@@ -97,9 +98,8 @@ int inter_search(int DATA[],int N,int ITEM,int POS)
         {
             END=POS-1;
         }
-        LOC=-1;
     }
-    return(LOC);
+    return(-1);
 }
 
 
@@ -158,14 +158,13 @@ void display(int DATA[],int N)
 int main()      //Menu
 {
     int choice,ITEM,LOC;
-    //LOC=NULL;
     int num;
     cout<<"Enter the no: of elements : "<<" ";
     cin>>num;
     int DATA[num];
-    cout<<"Enter the elements one by one : "<<" ";
     for(int i=0;i<num;i++)
     {
+        cout<<"Enter the element : "<<" ";
         cin>>DATA[i];
     }
     cout<<"The elements are : "<<" ";
@@ -188,9 +187,7 @@ int main()      //Menu
     {
         case 1:
         {
-            //int BEGIN,END;
-           // linear_search();
-            //int N;
+          
             int l=linear_search(DATA,num,ITEM,LOC);
             if (l==-1)
            {
@@ -234,7 +231,7 @@ int main()      //Menu
             int BEGIN,END;
 	 cout<<"Enter the item to be searched : "<<" ";
     cin>>ITEM;
-    int i=inter_search(DATA,num,ITEM,LOC);
+    int i=inter_search(DATA,num,ITEM);
     if (i==-1)
     {
         cout<<"Element not found"<<endl;
