@@ -43,13 +43,11 @@ void selection_sort(int DATA[],int N)
 }
 void insertion_sort(int A[],int N)
 {
-    A[0]=-1;
     for(int k=1;k<N;k++)
     {
-        cout<<"Insertion sort"<<endl;
         int TEMP=A[k];
         int PTR=k-1;
-        while (TEMP<A[PTR])
+        while (PTR>=0 && TEMP<A[PTR])
         {
             A[PTR+1]=A[PTR];
             PTR=PTR-1;
