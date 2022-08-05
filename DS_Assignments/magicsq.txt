@@ -1,0 +1,127 @@
+//Attempt #2
+//Magic Square
+
+#include<iostream>
+#include <iomanip>
+using namespace std;
+void magic(int p[3][3],int r,int c)
+{
+    int sr1=0;
+    int sr2=0;
+    int sr3=0;
+    int sc1=0;
+    int sc2=0;
+    int sc3=0;
+    int sd1=0;
+    int sd2=0;
+    for(int i=0;i<c;i++)
+    {
+        sr1=sr1+p[0][i];
+    }
+    cout<<"R1 sum = "<<sr1<<endl;
+    for(int i=0;i<c;i++)
+    {
+        sr2+=p[1][i];
+    }
+    cout<<"R2 sum = "<<sr2<<endl;
+    for(int i=0;i<c;i++)
+    {
+        sr3+=p[2][i];
+    }
+    cout<<"R3 sum = "<<sr3<<endl;
+    if(sr1==sr2&&sr2==sr3&&sr3==sr1)
+    {
+        for(int i=0;i<r;i++)
+        {
+            sc1+=p[i][0];
+        }
+        cout<<"Col1 Sum = "<<sc1<<endl;
+        for(int i=0;i<r;i++)
+        {
+            sc2+=p[i][1];
+        }
+        cout<<"Col2 Sum = "<<sc2<<endl;
+        for(int i=0;i<r;i++)
+        {
+            sc3+=p[i][2];
+        }
+        cout<<"Col3 Sum = "<<sc3<<endl;
+        if (sc1==sc2&&sc2==sc3&&sc3==sc1)
+        {
+            for(int i=0;i<r;i++)
+            {
+                for(int j=0;j<c;j++)
+                {
+                    if(i==j)
+                    {
+                        sd1+=p[i][i];
+                    }         
+                }
+            }
+            cout<<"Diag 1 sum = "<<sd1<<endl;
+            for(int i=0;i<r;i++)
+            {
+                for(int j=c;j>-1;j--)
+                {
+                    if(i==j)
+                    {
+                        sd2+=p[i][i];
+                    }         
+                }
+            }
+            cout<<"Diag 2 sum = "<<sd2<<endl;
+            if(sd1==sd2)
+            {
+                cout<<"MAGIC SQUARE !!!!!"<<endl;
+            }
+            
+        }
+        else
+        {
+            cout<<"NOT equal"<<endl;
+        }
+    }
+    else
+    {
+        cout<<"Not a magic square"<<endl;
+
+    }
+    
+}
+
+
+int main()
+{
+    int p[3][3];
+    int nr,nc,r,c;
+    cout<<"Enter no: of rows : "<<" ";
+    cin>>nr;
+    cout<<"Enter no: of columns : "<<" ";
+    cin>>nc;
+    //p=new int *[nr];
+    //for(int r=0;r<nr;r++)
+    //{
+    //    p[r]=new int[nc];
+    //}
+    cout<<"Enter "<<nr*nc<<" elements : "<<endl;
+    for(int r=0;r<nr;r++)
+    {
+        for(int c=0;c<nc;c++)
+        {
+            cin>>p[r][c];
+        }
+    }
+    cout<<"The magic square is displayed below : "<<endl;
+    for(int r=0;r<nr;r++)
+    {
+        cout<<setw(14);
+        for(int c=0;c<nc;c++)
+        {
+            cout<<p[r][c]<<" ";
+        }
+        cout<<endl;
+    }
+    magic(p,nr,nc);
+    return(0);
+
+}
