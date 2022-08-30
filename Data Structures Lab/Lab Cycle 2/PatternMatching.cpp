@@ -46,7 +46,7 @@ int main()
         }
         else
         {
-            cout<<"Pattern is present at position "<<x<<endl;
+            cout<<"Pattern is present at position number : "<<x<<endl;
         }
         cout<<endl;
         cout<<"Do you want to continue(y/n)? :  "<<" ";
