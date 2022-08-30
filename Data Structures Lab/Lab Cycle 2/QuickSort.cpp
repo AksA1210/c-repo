@@ -1,6 +1,6 @@
 
 
-//Quick Sort
+///Quick Sort
 #include<iostream>
 using namespace std;
 int Partition(int *A,int LB,int UB)
@@ -53,24 +53,32 @@ void display(int *A, int n)
 int main()
 {
     int n;
-    cout<<"Enter the number of elements : "<<" ";
-    cin>>n;
-    int A[n];
-    cout<<"Enter the elements : "<<" ";
-    for(int i = 0; i<n; i++)
+    char ch;
+    do
     {
-        cin>>A[i];
-    }
-    cout<<"The array is : "<<"  ";
-    for(int i = 0; i<n; i++)
-    {
-        cout<<A[i]<<" ";
-    }
-    cout<<endl;
-    int LB = 0;
-    int UB = n;
-    QuickSort(A,LB,UB);
-    display(A,n);
-    
+        cout<<"Enter the number of elements : "<<" ";
+        cin>>n;
+        int A[n];
+        cout<<"Enter the elements : "<<" ";
+        for(int i = 0; i<n; i++)
+        {
+            cin>>A[i];
+        }
+        cout<<"The array is : "<<"  ";
+        for(int i = 0; i<n; i++)
+        {
+            cout<<A[i]<<" ";
+        }
+        cout<<endl;
+        int LB = 0;
+        int UB = n;
+        QuickSort(A,LB,UB);
+        display(A,n);
+        cout<<endl;
+        cout<<"Do you want to continue(y/n)? : "<<" ";
+        cin>>ch;
 
+    } while (ch!='n');
+    
+    
 }
