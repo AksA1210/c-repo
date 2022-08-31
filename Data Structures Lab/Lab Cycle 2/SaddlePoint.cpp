@@ -30,44 +30,50 @@ int saddle_point(int** A,int m,int n)
 }
 int main()
 {
-    
-    int r,c;
-    int **A;
-    A = new int *[r];
-    cout<<"Enter the no: of rows : "<<" ";
-    cin>>r;
-    cout<<"Enter the no: of columns : "<<" ";
-    cin>>c;
-    for (int i = 0;i < r;i++) 
+    char ch;
+    do
     {
-		A[i] = new int[c];
-	}
-    cout<<"Input the elements of the matrix : "<<endl;
-    for(int i=0;i<r;i++)
-    {
-        for(int j=0;j<c;j++)
+         int r,c;
+        int **A;
+        A = new int *[r];
+        cout<<"Enter the no: of rows : "<<" ";
+        cin>>r;
+        cout<<"Enter the no: of columns : "<<" ";
+        cin>>c;
+        for (int i = 0;i < r;i++) 
         {
-            cin>>A[i][j];
-        }
-    }
-    cout<<"MATRIX = "<<endl;
-    cout<<"\t\t"<<endl;
-    for(int i=0;i<r;i++)
-    {
-        for(int j=0;j<c;j++)
+		    A[i] = new int[c];
+	    }
+        cout<<"Input the elements of the matrix : "<<endl;
+        for(int i=0;i<r;i++)
         {
-            cout<<setw(4)<<A[i][j]<<" ";
+            for(int j=0;j<c;j++)
+            {
+                cin>>A[i][j];
+            }
         }
-        cout<<endl;
-    }
-    int s=saddle_point(A,r,c);
-    if (s==-1)
-    {
-        cout<<"No saddle point"<<endl;
-    }
-    else
-    {
-        cout<<"\nSaddle point of the matrix = "<<s<<endl;
-    }
+        cout<<"MATRIX = "<<endl;
+        cout<<"\t\t"<<endl;
+        for(int i=0;i<r;i++)
+        {
+            for(int j=0;j<c;j++)
+            {
+                cout<<setw(4)<<A[i][j]<<" ";
+            }
+            cout<<endl;
+        }
+        int s=saddle_point(A,r,c);
+        if (s==-1)
+        {
+            cout<<"No saddle point"<<endl;
+        }
+        else
+        {
+            cout<<"\nSaddle point of the matrix = "<<s<<endl;
+        }
+        cout<<"Do you want to continue (y/n)? : "<<" ";
+        cin>>ch;
+       
+    } while (ch!='n');
     return(0);
 }
