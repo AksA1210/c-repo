@@ -1,7 +1,32 @@
-//Implementation of stack using array
+//Stack operations using array
 #include<iostream>
 using namespace std;
-void push(int Stack[],int TOP,int MAXSTK,int ITEM)
+class StackArr
+{
+    int* DATA;
+    int TOP;
+    int LAST;
+    public:
+        StackArr(int* A,int len)
+        {
+            int N;
+            DATA = new int[N];
+            // MAXD points to the last element
+            LAST = N;
+            for(int i = 0 ; i < len ; i++)
+            {
+                DATA[i] = A[i]; 
+            }
+            // TOP points to the last element
+            // Nels - 1 since index starts from 0
+            TOP = len-1;
+        }    
+        void push(int*,int,int,int);
+        void pop(int*,int,int);
+        void display(int*);
+        
+};
+void StackArr::push(int Stack[],int TOP,int MAXSTK,int ITEM)
 {
     if(TOP==MAXSTK-1)
     {
@@ -14,9 +39,9 @@ void push(int Stack[],int TOP,int MAXSTK,int ITEM)
         cout<<"Item successfully pushed into the stack........"<<endl;
     }
 }
-void pop(int Stack[],int TOP,int ITEM)
+void StackArr::pop(int Stack[],int TOP,int ITEM)
 {
-    if(TOP==0)
+    if(TOP<=0)
     {
         cout<<"Underflow"<<endl;
     }
@@ -27,9 +52,15 @@ void pop(int Stack[],int TOP,int ITEM)
         cout<<"Item popped out of the stack........"<<endl;
     }
 }
-void display(int Stack[],int TOP)
+void StackArr::display(int*)
 {
-    if(TOP==0)
+    cout<<endl;
+    for(int i = 0 ; i <= TOP ; i++)
+    {
+        cout << DATA[i] << " ";
+    }
+    cout<<endl;
+    /*if(TOP==0)
     {
         cout<<"No elements in the stack"<<endl;
     }
@@ -42,17 +73,20 @@ void display(int Stack[],int TOP)
         }
         cout<<endl;
 
-    }
+    }*/
 }
 
 int main()
 {
     int choice,len;
     char ch;
-    int top = -1;
-    int Stack[len];
+    int top;
+    //int top = -1;
+    int* Stack;
+
     cout<<"Enter the number of elements in the stack : "<<" ";
     cin>>len;
+    Stack=new int[len];
     cout<<"Enter the elements : "<<endl;
     for(int i=0;i<len;i++)
     {
@@ -63,7 +97,8 @@ int main()
     //{
     //    cout<<A[i]<<" ";
     //}
-    display(Stack,top);
+    StackArr S(Stack,len);
+    S.display(Stack);
     cout<<endl;
     //int MAXSTK = len;
     do
@@ -83,7 +118,7 @@ int main()
                 int item;
                 cout<<"Enter the item to be pushed : "<<" ";
                 cin>>item;
-                push(Stack,top,len,item);
+                S.push(Stack,top,len,item);
                 break;
             }
             case 2:
@@ -91,12 +126,13 @@ int main()
                 int item;
                 cout<<"Enter the item to be deleted : "<<" ";
                 cin>>item;
-                pop(Stack,top,item);
+                S.pop(Stack,top,item);
                 break;
             }
             case 3:
             {
-                display(Stack,top);
+                S.display(Stack);
+                cout<<endl;
                 break;
             }
             case 4: break;
