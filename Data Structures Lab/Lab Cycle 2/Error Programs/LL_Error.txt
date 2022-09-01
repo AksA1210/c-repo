@@ -1,0 +1,185 @@
+//Linked list---search,insertion,deletion
+#include<iostream>
+using namespace std;
+//class linkedlist;
+class Node
+{
+    public:
+    int data;
+    Node* link;
+    Node()
+    {
+		data = 0;
+		link = NULL;
+	}
+    Node(int data)
+    {
+        this->data = data;
+        this->link = NULL;
+    }
+    friend class linkedlist;
+};
+class linkedlist
+{
+    Node* head;
+    public:
+    linkedlist()
+    {
+        head=NULL;
+    }
+    public:
+    void insert(int);
+    void search(int);
+    void del(int);
+    void display();
+};
+void linkedlist::insert(int ITEM)
+{
+    //create();
+    Node* NEW=new Node(ITEM);
+    if(NEW==NULL)
+    {
+        cout<<"Overflow"<<endl;
+    }
+    int POS;
+    cout<<"Enter the position : "<<" ";
+    cin>>POS;
+    Node* PTR=head;
+    NEW->data=ITEM;
+    //Node* START;
+    /*if(LOC==NULL)
+    {
+        NEW->link=START;
+        START=NEW;
+    }
+    else
+    {
+        NEW->link=LOC->link;
+    }*/
+    for(int i=0; i<POS; i++)  
+    {
+       // PTR = PTR->link;  
+        if(PTR->link == NULL)  
+        {  
+            cout<<"Cannot insert"<<endl;  
+            return;  
+        }  
+    }  
+    //NEW->link = PTR->link;   
+    PTR->link = NEW;   
+    cout<<"Node inserted"<<endl;  
+
+}
+void linkedlist::search(int ITEM)
+{
+    Node* PTR=head;
+    Node* LOC;
+    while(PTR!=NULL)
+    {
+        if(ITEM==PTR->data)
+        {
+            LOC=PTR;
+            cout<<"The element is found at "<<LOC<<"index"<<endl;
+        }
+        else
+        {
+            PTR=PTR->link;
+        }
+    }
+    cout<<"Element not in the list "<<endl;
+    LOC=NULL;
+}
+void linkedlist::del(int ITEM)
+{
+    Node* LOC;
+    Node* LOCP;
+    Node* START;
+    if(START==NULL)
+    {
+        cout<<"Underflow"<<endl;
+    }
+    if(LOCP==NULL)
+    {
+        START=START->link;
+        LOC->link=NULL;
+    }
+    else
+    {
+        LOCP->link=LOC->link;
+        LOC->link=NULL;
+    }
+}
+void linkedlist::display()
+{
+    if(head==NULL)
+    {
+        cout<<"Overflow"<<endl;
+    }
+    Node* PTR=head;
+    cout<<"Data inside linked list : "<<endl;
+    while(PTR!=NULL)
+    {
+        cout<<PTR->data<<" ";
+        PTR=PTR->link;
+    }
+}
+
+int main()
+{
+    int choice;
+    linkedlist l;
+    do
+    {
+        cout<<"----------------LINKED LIST OPERATIONS--------------"<<endl;
+        cout<<"Choose any option from the following  : "<<endl;
+        cout<<"1.Insertion"<<endl;
+        cout<<"2.Search"<<endl;
+        cout<<"3.Deletion"<<endl;
+        cout<<"4.Display"<<endl;
+        cout<<"5.Exit"<<endl;
+        cout<<"Enter the choice : "<<" ";
+        cin>>choice;
+        switch(choice)
+        {
+    
+            case 1:
+            {
+                int p,pos;
+                cout<<"Enter the element to be inserted : "<<" ";
+                cin>>p;
+                l.insert(p);
+                cout<<"Element has been successfully inserted !!!"<<endl;
+                break;
+            }
+            case 2:
+            {
+                int item;
+                cout<<"Enter the element to be searched : "<<" ";
+                cin>>item;
+                l.search(item);
+                break;
+            }
+            case 3:
+            {
+                int h;
+                cout<<"Enter the element to be deleted : "<<" ";
+                cin>>h;
+                l.del(h);
+                cout<<"Element has been successfully deleted !!!"<<endl;
+                break;
+            }
+            case 4:
+            {
+                l.display();
+                break;
+            }
+            case 5:
+            {
+                break;
+                default:cout<<"Invalid choice ! Please choose another option"<<endl;
+            }
+        }
+    }
+    while(choice!=5);
+    return(0);
+}

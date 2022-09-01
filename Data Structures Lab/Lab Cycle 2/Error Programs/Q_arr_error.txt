@@ -1,0 +1,144 @@
+//Implementation of Queue using array
+#include<iostream>
+using namespace std;
+class Queue
+{   
+    public:
+    int* Q;
+    int FRONT;
+    int REAR;
+    //int LAST;
+    Queue() 
+    {
+        FRONT = -1;
+        REAR = -1;
+    }    
+    Queue(int* DATA,int len)
+    {
+        //int N;
+        int N = len;
+        Q = new int[N];
+        REAR = N;
+        //LAST = N;
+        for(int i = 0 ; i < len ; i++)
+        {
+            Q[i] = DATA[i]; 
+        }
+        FRONT = len-1;
+    }    
+    void q_insert(int,int);
+    void q_delete();
+    void display(int);
+
+};
+void Queue::q_insert(int ITEM,int len)
+{
+    if (FRONT = REAR+1)
+    {
+        cout << "OVERFLOW" << endl;
+    }
+    else if (FRONT == -1 && REAR == -1)
+    {
+        REAR = 0;
+        FRONT = 0;
+        Q[REAR] = ITEM;
+    }
+    else
+    {
+        REAR++;
+        Q[REAR] = ITEM;
+    }
+}
+void Queue::q_delete()
+{
+    int ITEM;
+    if (FRONT == -1 && REAR == -1)
+    {
+        cout << "UNDERFLOW" << endl;
+    }
+    else if (REAR == FRONT)
+    {
+        ITEM = Q[REAR];
+        REAR = -1;
+        FRONT = -1;
+        cout<<"Item has been successfully deleted from the queue....."<<endl;
+        FRONT++;
+    }
+    else
+    {
+        cout << "The element at the front :  " << FRONT << endl;
+        ITEM = Q[FRONT];
+        Q[FRONT] = 0;
+        cout<<"Item has been successfully deleted from the queue......"<<endl;
+        FRONT++;
+    }
+}
+void Queue::display(int len)
+{
+    if (FRONT == -1)
+    {
+        cout << "EMPTY QUEUE" << endl;
+    }
+    else
+    {
+        cout << "QUEUE :" << endl;
+        for (int i = 0; i < len; i++)
+        {
+            cout << Q[i] << "  ";
+        }
+        cout<<endl;
+        cout << "Front:" << FRONT << endl;
+        cout << "Rear:" << REAR << endl;
+        cout << endl;
+    }
+}
+int main()
+
+{
+    int choice;
+    int len;
+    int A[len];
+    cout<<"Enter the no: of elements to be added : "<<" ";
+    cin>>len;
+    Queue q1(A,len);
+    do
+    {
+        cout<<"------------------------------QUEUE OPERATIONS-------------------------"<<endl;
+        cout<<"1.Insert"<<endl;
+        cout<<"2.Delete"<<endl;
+        cout<<"3.Display"<<endl;
+        cout<<"4.Exit"<<endl;
+        cout<<"Enter the choice : "<<" ";
+        cin>>choice;
+        switch(choice)
+        {
+            case 1:
+            {
+                for(int i = 0;i<len;i++)
+                {
+                    int item;
+                    cout<<"Enter the element to be added : "<<" ";
+                    cin>>item;
+                    q1.q_insert(item,len+1);
+                }
+                break;
+            }
+            case 2:
+            {
+                q1.q_delete();
+                break;
+            }
+            case 3:
+            {
+                q1.display(len);
+                break;
+            }
+            case 4:
+            {
+                break;
+                default:cout<<"Invalid choice ! Please choose another option"<<endl;
+            }
+
+        }
+    } while (choice!=4); 
+}
