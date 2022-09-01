@@ -7,21 +7,22 @@ class StackArr
 {
     int DATA[20];
     int TOP;
-    int LAST;
+    int MAX;
+    //int LAST;
     public:
         StackArr()
 	      {
 		      TOP = -1;
-		      MAX = 20;
+		       MAX = 20;
         }
-        void push(int*,int,int,int);
-        void pop(int*,int,int);
-        void display(int*,int);
+        void push(int*,int);
+        void pop();
+        void display();
 
 };
 void StackArr::push(int ITEM)
 {
-    if(TOP==MAX-1)
+    if(TOP>=MAX)
     {
         cout<<"Overflow"<<endl;
     }
@@ -40,19 +41,14 @@ void StackArr::pop()
     }
     else
     {
-        DATA[TOP]=ITEM;
+        int ITEM = DATA[TOP];
         TOP--;
         cout<<"Item popped out of the stack........"<<endl;
     }
 }
 void StackArr::display()
 {
-    if(TOP==0)
-    {
-        cout<<"No elements in the stack"<<endl;
-    }
-    else
-    {
+
         int item = DATA[TOP];
         cout<<item<<" < == "<<" ";
         for(int i = TOP-1; i>=0; i--)
@@ -61,34 +57,17 @@ void StackArr::display()
         }
         cout<<endl;
 
-    }
 }
 
 int main()
 {
-    int choice,len;
+    int choice;
     char ch;
-    int top = -1;
-    int Stack[10];
-
-    cout<<"Enter the number of elements in the stack : "<<" ";
-    cin>>len;
-    cout<<"Enter the elements : "<<endl;
-    for(int i=0;i<len;i++)
-    {
-        cin>>Stack[i];
-    }
-    cout<<"Displaying the stack......."<<endl;
-    //for(int i=0;i<len;i++)
-    //{
-    //    cout<<Stack[i]<<" ";
-    //}
-    //StackArr S(Stack,len);
-   // S.display(Stack,top);
-    cout<<endl;
+    StackArr S;
     //int MAXSTK = len;
     do
     {
+	cout<<endl;    
         cout<<"------------------STACK OPERATIONS USING ARRAY---------------"<<endl;
         cout<<"Choose any option from the following  : "<<endl;
         cout<<"1.Push"<<endl;
