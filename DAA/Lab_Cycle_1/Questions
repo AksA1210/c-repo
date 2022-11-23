@@ -1,0 +1,6 @@
+1. Quick sort
+   (with random number generator and time taken to be plotted in a graph)
+2. Print all nodes reachable from a given starting node using BFS.
+3. Check DFS or not.
+4. Dijkstra's algorithm (weighted connected graph)
+5. Implement All-Pairs Shortest Paths Problem using Floyd's Algorithm
