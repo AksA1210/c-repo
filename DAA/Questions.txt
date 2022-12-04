@@ -1,0 +1,23 @@
+DAA lab cycle 1 
+
+1. Quick Sort
+2. BFS
+3. DFS
+4. Dijkstra
+5. Bellman Ford
+
+DAA lab cycle 2 
+
+1. Floyd Warshall
+2. Transitive closure of a given directed graph using Warshall's algorithm
+3. Kruskal's algorithm (MCST of a undirected graph)
+4. Prim's algorithm (MCST of a undirected graph)
+5. Topological ordering of vertices in a given digraph
+
+DAA lab cycle 3
+
+1. Matrix chain multiplication using dynamic programming
+2. 0/1 Knapsack problem using Dynamic programming
+3. Huffman Coding using Greedy Algorithm
+4. N Queens problem using Backtracking
+5. Optimal solution for the Traveling Sales Person Problem and then solve the same problem                                    using any approximation algorithm and determine the error in the approximation
