@@ -1,0 +1,5 @@
+1. Floyd Warshall
+2. Transitive closure of a given directed graph using Warshall's Algorithm
+3. Kruskal's algorithm
+4. Prim's algorithm
+5. Topological ordering of vertices in a given digraph 
