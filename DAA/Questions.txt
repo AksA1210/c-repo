@@ -20,4 +20,4 @@ DAA lab cycle 3
 2. 0/1 Knapsack problem using Dynamic programming
 3. Huffman Coding using Greedy Algorithm
 4. N Queens problem using Backtracking
-5. Optimal solution for the Traveling Sales Person Problem and then solve the same problem                                    using any approximation algorithm and determine the error in the approximation
+5. Optimal solution for the Traveling Sales Person Problem and then solve the same problem using any approximation algorithm and determine the error in the approximation
