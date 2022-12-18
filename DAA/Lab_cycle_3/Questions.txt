@@ -1,0 +1,7 @@
+1. Implement Matrix Chain Multiplication using dynamic programming
+2. Implement 0/1 Knapsack problem using dynamic programming
+3. Implement Huffman coding using Greedy algorithm
+4. Implement N Queens Problem using Backtracking
+5. Travelling salesman problem 
+   a. Find optimal soln
+   b. Also,Solve again using any approximation algorithm (and also determine the error in the approximation)
