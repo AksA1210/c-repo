@@ -1,5 +1,6 @@
 //Floyd Warshall
 //without user input
+//hard coded
 #include<iostream>
 using namespace std;
 #define INF 99999
